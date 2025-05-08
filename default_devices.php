@@ -1,0 +1,266 @@
+<?php
+$devices = [
+    "LWU530-APS" => [
+        "manufacturer" => "Christie",
+        "type" => "Projector",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to power on the projector",
+                "Wait a moment for the projector to fully initialize",
+                "If no image appears, check that the correct input source is selected"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia projektorin käynnistämiseen",
+                "Odota hetki, kunnes projektori on täysin käynnistynyt",
+                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att starta projektorn",
+                "Vänta tills projektorn har startat helt",
+                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald"             
+            ]
+        ]
+    ],
+    "EB-L520U" => [
+        "manufacturer" => "Epson",
+        "type" => "Projector",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to power on the projector",
+                "Wait a moment for the projector to fully initialize",
+                "If no image appears, check that the correct input source is selected"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia projektorin käynnistämiseen",
+                "Odota hetki, kunnes projektori on täysin käynnistynyt",
+                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att starta projektorn",
+                "Vänta tills projektorn har startat helt",
+                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald"
+            ]
+        ]
+    ],
+    "52LD550N" => [
+        "manufacturer" => "LG",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
+    "65SE3KB-B" => [
+        "manufacturer" => "LG",
+        "type" => "Display",
+            "instructions" => [
+            "en" => [
+                "Use the video switcher to control the display"
+            ],
+            "fi" => [
+                "Käytä videovaihtajaa näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd videoväxlaren för att styra displayen"
+            ]
+        ]
+    ],
+    "60LD550N" => [
+        "manufacturer" => "LG",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
+    "MultiSync E558" => [
+        "manufacturer" => "NEC",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
+    "MLC 104 IP Plus AAP" => [
+        "manufacturer" => "Extron",
+        "type" => "Control Panel",
+        "instructions" => [
+            "en" => [
+                "Turn the display device on / off by pressing the ON/OFF button",
+                "Adjust volume using the VOLUME encoder",
+                "Select video input by pressing one of the SOURCE buttons (PC, HDMI, etc.)"
+            ],
+            "fi" => [
+                "Käynnistä/sammuta näyttö painamalla DISPLAY ON/OFF -painiketta",
+                "Säädä äänenvoimakkuutta VOLUME-säätimellä",
+                "Valitse videolähde painamalla jotain SOURCE-painikkeista (PC, HDMI, jne.)"
+            ],
+            "sv" => [
+                "Slå på/av skärmen genom att trycka på DISPLAY ON/OFF-knappen",
+                "Justera volymen med VOLUME-enkoder",
+                "Välj videokälla genom att trycka på en av SOURCE-knapparna (PC, HDMI, etc.)"
+            ]
+        ]
+    ],
+    "MLC Plus 100" => [
+        "manufacturer" => "Extron",
+        "type" => "Control Panel",
+        "instructions" => [
+            "en" => [
+                "Turn the display device on / off by pressing the ON/OFF button",
+                "Adjust volume using the VOLUME encoder",
+                "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)"
+            ],
+            "fi" => [
+                "Käynnistä/sammuta näyttö painamalla DISPLAY ON/OFF -painiketta",
+                "Säädä äänenvoimakkuutta VOLUME-säätimellä",
+                "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, etc.)"
+            ],
+            "sv" => [
+                "Slå på/av skärmen genom att trycka på DISPLAY ON/OFF-knappen",
+                "Justera volymen med VOLUME-enkoder",
+                "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, etc.)"
+            ]
+        ]
+    ],
+    "4030B" => [
+        "manufacturer" => "Genelec",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Speakers are automatically activated when audio is played"
+            ],
+            "fi" => [
+                "Kaiuttimet aktivoituvat automaattisesti, kun ääntä toistetaan"
+            ],
+            "sv" => [
+                "Högtalarna aktiveras automatiskt när ljud spelas"
+            ]
+        ]
+    ],
+    "4030C" => [
+        "manufacturer" => "Genelec",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Speakers are automatically activated when audio is played"
+            ],
+            "fi" => [
+                "Kaiuttimet aktivoituvat automaattisesti, kun ääntä toistetaan"
+            ],
+            "sv" => [
+                "Högtalarna aktiveras automatiskt när ljud spelas"
+            ]
+        ]
+    ],
+    "MX822" => [
+        "manufacturer" => "ART",
+        "type" => "Audio Mixer",
+        "instructions" => [
+            "en" => [
+                "Adjust the volume of individual channels using the LEVEL control for each channel. The overall volume is adjusted with the MASTER control."
+            ],
+            "fi" => [
+                "Säädä yksittäisen kanavan äänenvoimakkuutta kunkin kanavan LEVEL-säätimellä. Kokonaisäänenvoimakkuus säädetään MASTER-säätimellä."
+            ],
+            "sv" => [
+                "Justera volymen för enskilda kanaler med LEVEL-kontrollen för varje kanal. Den totala volymen justeras med MASTER-kontrollen."
+            ]
+        ]
+    ],
+    "BTone analog 2" => [
+        "manufacturer" => "Pragma",
+        "type" => "Bluetooth audio interface",
+        "instructions" => [
+            "en" => [
+                "Press the connect button to connect your device to the speakers. The button starts flashing and BTone 2 becomes visible as a bluetooth device for pairing for 50 seconds.",
+                "Connect your device via Bluetooth. The button light stays on continuously when the connection is established.",
+                "The connection will terminate when you leave the room, after which you need to reconnect. If you want to disconnect manually, press the connect button again while connected."
+            ],
+            "fi" => [
+                "Paina connect-painiketta yhdistääksesi laitteesi kaiuttimiin. Painike alkaa vilkkua ja BTone 2 [luokan nimi] on näkyvissä bluetooth-laitteena paritusta varten 50s ajan.",
+                "Yhdistä laitteesi Bluetoothin kautta. Painikkeen valo palaa yhtäjaksoisesti, kun yhteys on muodostettu.",
+                "Yhteys katkeaa, kun poistut huoneesta, minkä jälkeen sinun täytyy yhdistää uudelleen. Jos haluat katkaista yhteyden manuaalisesti, paina connect-painiketta uudelleen yhteyden aikana"
+            ],
+            "sv" => [
+                "Tryck på anslutningsknappen för att ansluta din enhet till högtalarna. Knappen börjar blinka och BTone 2 blir synlig som en bluetooth-enhet för parkoppling i 50 sekunder.",
+                "Anslut din enhet via Bluetooth. Knappens ljus lyser kontinuerligt när anslutningen har upprättats.",
+                "Anslutningen bryts när du lämnar rummet, varefter du måste ansluta på nytt. Om du vill koppla från manuellt, tryck på anslutningsknappen igen medan du är ansluten."
+            ]
+        ]
+    ],
+    "SW4 HD 4K" => [
+        "manufacturer" => "Extron",
+        "type" => "Video Switcher",
+        "instructions" => [
+            "en" => [
+                "Select the HDMI video source by pressing the INPUT1 button"
+            ],
+            "fi" => [
+                "Valitse HDMI-videolähde painamalla INPUT1-painiketta"
+            ],
+            "sv" => [
+                "Välj HDMI-videokälla genom att trycka på INPUT1-knappen"
+            ]
+        ]
+    ]
+];
+
+// Lisää laitetyyppien käännöstaulukko
+$deviceTypeTranslations = [
+    'en' => [
+        'Projector' => 'Projector',
+        'Display' => 'Display',
+        'Control Panel' => 'Control Panel',
+        'Loudspeakers' => 'Loudspeakers',
+        'Bluetooth audio interface' => 'Bluetooth audio interface',
+        'Audio Mixer' => 'Audio Mixer',
+        'Video Switcher' => 'Video Switcher'
+    ],
+    'fi' => [
+        'Projector' => 'Projektori',
+        'Display' => 'Näyttö',
+        'Control Panel' => 'Ohjauspaneeli',
+        'Loudspeakers' => 'Kaiuttimet',
+        'Bluetooth audio interface' => 'Bluetooth-ääniliitäntä',
+        'Audio Mixer' => 'Äänimikseri',
+        'Video Switcher' => 'Videovaihtaja'
+    ],
+    'sv' => [
+        'Projector' => 'Projektor',
+        'Display' => 'Bildskärm',
+        'Control Panel' => 'Kontrollpanel',
+        'Loudspeakers' => 'Högtalare',
+        'Bluetooth audio interface' => 'Bluetooth-ljudgränssnitt',
+        'Audio Mixer' => 'Ljudmixer',
+        'Video Switcher' => 'Videoomkopplare'
+    ]
+];
+
+// Palauta sekä laitemääritykset että käännökset
+return [
+    'devices' => $devices,
+    'translations' => $deviceTypeTranslations
+];
+?>

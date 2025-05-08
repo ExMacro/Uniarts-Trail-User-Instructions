@@ -1,0 +1,408 @@
+/**
+ * CSS file for AV Equipment instructions and QR generator
+ * Last updated: May 2025 Marko Myöhänen
+ */
+
+/* CSS Variables for consistent styling */
+:root {
+    --primary-color: #212FFF;       /* Main blue color */
+    --dark-gray: #3D3D3D;              /* Footer and language bar color */
+    --light-bg: #f8f8f8;            /* Light background color */
+    --text-color: #333;             /* Main text color */
+    --std-padding: 32px;            /* Standard padding value */
+    --std-margin: 20px;             /* Standard margin value */
+    --std-border-radius: 4px;       /* Standard border radius */
+    --container-width: 80%;         /* Main container width */
+    --mobile-breakpoint: 812px;     /* Mobile breakpoint */
+    --header-height: 80px;          /* Fixed header height */
+    --lang-bar-height: 44px;        /* Fixed language bar height */
+    --footer-height: 120px;         /* Fixed footer height */
+  }
+
+/* =====================
+   RESET & BASE STYLES
+   ===================== */
+   html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    padding: 0;
+    font-family: Arial;
+    display: flex;
+    flex-direction: column;
+  }
+
+/* =====================
+   LAYOUT COMPONENTS
+   ===================== */
+
+  .lang-bar {
+  display: flex;
+  max-width: 100%;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 9px;
+  padding-right: 24%;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--dark-gray);
+  color: white;
+  }
+  
+  .lang-bar-content {
+    margin-right: 32px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .lang-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .lang-bar a:hover {
+    text-decoration: underline;
+  }
+  
+  .lang-bar a.active {
+    text-decoration: underline;
+  }
+
+/* Header section */
+.header {
+  display: flex;
+  height: 80px;
+  padding: 11px 24%;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0px;
+  flex-shrink: 0;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.header img {
+  max-height: 49px;
+  width: auto;
+  padding: 0 var(--std-padding);
+}
+
+.header h1 {
+  color: var(--White, #FFF);
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  text-align: left;
+}
+
+/* Main content container */
+.container {
+  display: flex;
+  padding: 0 24% 64px 24%;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+.container h2 {
+  color: var(--Black, #353535);
+  font-family: Arial;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0; 
+  width: 100%;
+  align-self: flex-start;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.container h3 {
+  color: var(--Black, #353535);
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0; 
+  width: 100%;
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--dark-gray);
+  color: white;
+  height: var(--footer-height);
+  padding: 16px 24%;
+  text-align: left;
+  font-family: Arial;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-heading {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; 
+  margin-top: 0;
+  margin-bottom: 8px;
+  padding-left: 32px;
+}
+
+.footer-contact {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding-left: 32px;
+}
+
+.footer-contact a {
+  color: white !important;
+}
+
+/* =====================
+   TABLE & IMAGE STYLES
+   ===================== */
+
+/* Laiteosiot */
+.device-section {
+  width: 100%;
+  margin-bottom: 0;
+  background-color: var(--light-bg);
+  border-radius: var(--std-border-radius);
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.device-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.device-instructions {
+  flex: 3; /* 75% width */
+  text-align: left;
+}
+
+.device-images {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  height: 100px;
+}
+
+.device-images img {
+  height: 100%;
+  width: calc(100% - 20px); /* One picture takes all width */
+  object-fit: contain;
+}
+
+/* Two pictures are set side by side */
+.device-images img:only-child {
+  width: calc(100% - 20px); /* One picture takes all width */
+}
+
+.device-images img:not(:only-child) {
+  width: calc(50% - 15px); /* Two pictures take up 50% of space including gap */
+}
+
+.device-spacer {
+  height: 20px;
+  width: 100%;
+  background-color: white;
+}
+
+/* =====================
+   CONTENT ELEMENTS
+   ===================== */
+
+  /* Instructions styling */
+  .instructions {
+    margin: 0 0 30px;
+    border-radius: var(--std-border-radius);
+    color: var(--Black, #353535);
+    font-family: "Times New Roman";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+  }
+
+  .instructions ol {
+    padding-left: var(--std-margin);
+  }
+
+  .instructions li {
+    margin-bottom: 10px;
+  }
+
+  /* QR code styling */
+  .qrcode {
+    margin: 30px 0 40px;
+    max-width: 350px;
+    text-align: center;
+    background-color: white;
+  }
+
+  .qrcode img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: var(--std-border-radius);
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+/* =====================
+   FORM ELEMENTS
+   ===================== */
+  input[type="text"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--std-border-radius);
+    width: 60%;
+    max-width: 300px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--std-border-radius);
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.5s ease;
+  }
+
+  button:hover {
+    background-color: #3367d6;
+  }
+
+  /* ============================
+     RESPONSIVE STYLES FOR MOBILE
+     ============================ */
+
+  @media (max-width: 812px) {
+    /* Layout adjustments */
+    .lang-container {
+      margin-right: 0;
+    }
+    .lang-bar {
+      padding: 16px 9px;
+    }
+          
+    .header {
+      padding: 18px 11px;
+    }
+    
+    .container {
+      padding: 16px 24px 48px 16px; /* Bottom padding 48px */
+    }
+    
+    .container h2 {
+      padding: 16px;
+      font-size: 26px;
+    }
+
+    .container h3 {
+      font-size: 18px;
+    }
+    
+    .device-section {
+      padding: 16px;
+    }
+
+    .instructions {
+      font-size: 18px;
+    }
+
+    .footer {
+      padding: 16px;
+      height: 109px;
+    }
+
+    /* Device section layout for mobile */
+    .device-content {
+      flex-direction: column;
+    }
+    
+    .device-instructions {
+      width: 100%;
+    }
+    
+    .device-images {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+/* =====================
+   PRINT STYLES
+   ===================== */
+  
+  @media print {
+    /* Hide elements */
+    .lang-bar, .footer {
+      display: none !important;
+    }
+    
+    /* Force background colors */
+    body, div, header, .header, .container {
+      print-color-adjust: exact !important;
+    }
+    
+    /* Page setup */
+    @page {
+      margin: 0.5cm;
+    }
+    
+    /* Center content for print */
+    .container {
+      width: 100% !important; /* Force full width */
+      margin: 0 !important; /* Remove margins */
+      padding: 0 10% !important; /* Remove padding */
+      box-sizing: border-box;
+      text-align: center;
+    }
+    
+    /* QR code positioning */
+    .qrcode {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 350px;
+    }
+    .instructions {
+      font-size: 24px;
+    }
+  }
