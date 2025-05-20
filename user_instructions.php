@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo isset($lang) ? $lang : 'en'; ?>">
+<html lang="<?php echo isset($lang) ? $lang : 'fi'; ?>">
     <head>
         <title>Käyttöohje AV-laitteille</title>
         <meta charset="UTF-8">
@@ -52,21 +52,35 @@
         'en' => 'uniartslogo_en.png'
     ];
     
-    // Select logo file based on the current language
-    $logoFile = isset($logoFiles[$lang]) ? $logoFiles[$lang] : 'uniartslogo_en.png';
+    // Alt texts for different languages
+    $altTexts = [
+        'fi' => 'Taideyliopiston logo',
+        'sv' => 'Konstuniversitetets logo',
+        'en' => 'University of the Art Helsinki logo'
+    ];
+    
+    // Make sure we only accept supported languages
+    $supportedLanguages = ['fi', 'sv', 'en'];
+    if (!in_array($lang, $supportedLanguages)) {
+        $lang = 'fi'; // Fallback to Finnish
+    }
+    
+    // Select logo file and alt text based on the current language
+    $logoFile = $logoFiles[$lang];
+    $altText = $altTexts[$lang];
     ?>
-    <img src="<?php echo $logoFile; ?>" alt="UniArts Logo">
+    <img src="<?php echo $logoFile; ?>" alt="<?php echo $altText; ?>" tabindex="0">
     <?php
     switch ($lang) {
         case 'fi':
-            echo '<h1>Käyttöohje AV-laitteille</h1>';
+            echo '<span class="header-title" tabindex="0">Käyttöohje AV-laitteille</span>';
             break;
         case 'sv':
-            echo '<h1>Bruksanvisning för AV-utrustning</h1>';
+            echo '<span class="header-title" tabindex="0">Bruksanvisning för AV-utrustning</span>';
             break;
         case 'en':
         default:
-            echo '<h1>User Manual for AV Equipment</h1>';
+            echo '<span class="header-title" tabindex="0">User Manual for AV Equipment</span>';
             break;
     }
     ?>
@@ -77,11 +91,11 @@
 require_once('./config.php');
 
 // Process URL parameters and handle Finnish characters
-$freematch = isset($_GET['free']) ? $_GET['free'] : '';
-if($freematch) {
-    $freematch = str_replace(['å', 'Å', 'ä', 'Ä', 'ö', 'Ö'],
-                           ['%C3%A5', '%C3%85', '%C3%A4', '%C3%84', '%C3%B6', '%C3%96'],
-                           $freematch);
+$room = isset($_GET['room']) ? $_GET['room'] : '';
+if($room) {
+    $room = str_replace(['å', 'Å', 'ä', 'Ä', 'ö', 'Ö'],
+                         ['%C3%A5', '%C3%85', '%C3%A4', '%C3%84', '%C3%B6', '%C3%96'],
+                         $room);
 }
 
 // Check for API key
@@ -102,7 +116,7 @@ function makeApiRequest($url, $code) {
 }
 
 // 1. Get initial search results
-$initialResults = makeApiRequest("https://api.trail.fi/api/v1/items?&search%5Bfree%5D=$freematch", $code);
+$initialResults = makeApiRequest("https://api.trail.fi/api/v1/items?&search%5Bfree%5D=$room", $code);
 
 // 2. Extract location ID from L/S code
 $locationId = '';
@@ -217,7 +231,7 @@ if (!empty($array['data'])) {
 }
 
 // Show room name or a default message if not found
-echo "<h2>" . (!empty($roomName) ? $roomName : "Tilan tietoja ei löytynyt") . "</h2>";
+echo "<h1 class='room-title' tabindex='0'>" . (!empty($roomName) ? $roomName : "Tilan tietoja ei löytynyt") . "</h1>";
 
 // Display devices by group type
 foreach ($deviceGroups as $type => $groupDevices) {
@@ -238,11 +252,11 @@ foreach ($deviceGroups as $type => $groupDevices) {
             // Start the device section container
             echo "<div class='device-section'>";
             // Display the device title (manufacturer + model + translated type)
-            echo "<h3>" . translateDeviceType($device['type'], $lang) . "</h3>";
+            echo "<h2 class='device-title' tabindex='0'>" . translateDeviceType($device['type'], $lang) . "</h2>";
             // Create a flexbox container for the content (instructions + images)
             echo "<div class='device-content'>";
             // Instructions section
-            echo "<div class='device-instructions'>";
+            echo "<div class='device-instructions' tabindex='0'>";
             // Check if instructions exist for the current language
             if (isset($device['instructions'][$lang]) && !empty($device['instructions'][$lang])) {
                 echo "<div class='instructions'>";
@@ -270,10 +284,13 @@ foreach ($deviceGroups as $type => $groupDevices) {
             }
             echo "</div>"; // End instructions div
             // Images section
-            echo "<div class='device-images'>";
+            echo "<div class='device-images' tabindex='0'>";
             // Loop through the quantity to display multiple instances of the same device
             for ($i = 0; $i < $quantity; $i++) {
-                echo "<img class='centered-image' src='images/$imageName' alt='" . $manufacturerName . " " . $deviceName . "'>";
+                $deviceTypeText = translateDeviceType($device['type'], $lang);
+//                $altText = $manufacturerName . " " . $deviceName . " " . $deviceTypeText;
+                $altText = $deviceTypeText;
+                echo "<img class='centered-image' src='images/$imageName' alt='$altText'>";
             }
             echo "</div>"; // End image div
             echo "</div>"; // End device-content div
@@ -287,39 +304,41 @@ foreach ($deviceGroups as $type => $groupDevices) {
 }
 echo "</div>"; // End container
 
-if (isset($_GET['lang'])) {
-    $lang = $_GET['lang'];
-    switch ($lang) {
-        case 'fi':
-            $helpText = 'Tarvitsetko lisää apua?';
-            $contactText = 'Ota yhteyttä AV-tukeen: ';
-            $subjectText = 'Kysymys tilasta ';
-            break;
-        case 'sv':
-            $helpText = 'Behöver du mer hjälp?';
-            $contactText = 'Kontakta AV-supporten: ';
-            $subjectText = 'En fråga om rum ';
-            break;
-        case 'en':
-        default:
-            $helpText = 'Do you need more help?';
-            $contactText = 'Please contact AV support: ';
-            $subjectText = 'A question about room ';
-            break;
-    }
-    
-    echo '<div class="footer">';
-    echo '<div class="footer-heading">' . $helpText . '</div>';
-    echo '<div class="footer-contact">' . $contactText;
-    
-    $roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
-    $subject = rawurlencode($subjectText . $roomName);
-    $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
-    
-    echo '<a href="' . $mailto . '">siba.avhelp@uniarts.fi</a>';
-    echo '</div>';
-    echo '</div>';
+// Always show the footer with contact information
+switch ($lang) {
+    case 'fi':
+        $helpText = 'Tarvitsetko lisää apua?';
+        $contactText = 'Ota yhteyttä AV-tukeen: ';
+        $subjectText = 'Kysymys tilasta ';
+        break;
+    case 'sv':
+        $helpText = 'Behöver du mer hjälp?';
+        $contactText = 'Kontakta AV-supporten: ';
+        $subjectText = 'En fråga om rum ';
+        break;
+    case 'en':
+        $helpText = 'Do you need more help?';
+        $contactText = 'Please contact AV support: ';
+        $subjectText = 'A question about room ';
+        break;
+    default:
+        $helpText = 'Tarvitsetko lisää apua?';
+        $contactText = 'Ota yhteyttä AV-tukeen: ';
+        $subjectText = 'Kysymys tilasta ';
+        break;
 }
+
+echo '<div class="footer">';
+echo '<div class="footer-heading" tabindex="0">' . $helpText . '</div>';
+echo '<div class="footer-contact" tabindex="0">' . $contactText;
+
+$roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
+$subject = rawurlencode($subjectText . $roomName);
+$mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
+
+echo '<a href="' . $mailto . '">siba.avhelp@uniarts.fi</a>';
+echo '</div>';
+echo '</div>';
 
 // print API URI and PHP array for debugging purposes, set debug as url parameter
 if(isset($_GET['debug'])) {

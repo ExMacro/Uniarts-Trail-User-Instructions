@@ -49,6 +49,7 @@
   gap: 16px;
   background-color: var(--dark-gray);
   color: white;
+
   }
   
   .lang-bar-content {
@@ -56,13 +57,13 @@
     display: flex;
     gap: 16px;
     align-items: center;
+    letter-spacing: 0;
   }
   
   .lang-bar a {
     color: white;
     text-decoration: none;
     font-size: 14px;
-    letter-spacing: 1px;
   }
   
   .lang-bar a:hover {
@@ -89,15 +90,15 @@
 }
 
 .header img {
-  max-height: 49px;
+  max-height: 64px;
   width: auto;
   padding: 0 var(--std-padding);
 }
 
-.header h1 {
+.header-title {
   color: var(--White, #FFF);
   font-family: Arial;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -117,7 +118,7 @@
   flex: 1;
 }
 
-.container h2 {
+.room-title {
   color: var(--Black, #353535);
   font-family: Arial;
   font-size: 32px;
@@ -133,7 +134,7 @@
   box-sizing: border-box;
 }
 
-.container h3 {
+.device-title {
   color: var(--Black, #353535);
   font-family: Arial;
   font-size: 20px;
@@ -153,6 +154,7 @@
   background-color: var(--dark-gray);
   color: white;
   height: var(--footer-height);
+  flex-shrink: 0;
   padding: 16px 24%;
   text-align: left;
   font-family: Arial;
@@ -161,32 +163,32 @@
 }
 
 .footer-heading {
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; 
+  line-height: 20px;
   margin-top: 0;
   margin-bottom: 8px;
   padding-left: 32px;
 }
 
 .footer-contact {
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   padding-left: 32px;
+  font-family: 'Times New Roman';
 }
 
 .footer-contact a {
   color: white !important;
 }
 
-/* =====================
-   TABLE & IMAGE STYLES
-   ===================== */
+/* ==========================
+   INSTRUCTION & IMAGE STYLES
+   ========================== */
 
-/* Laiteosiot */
 .device-section {
   width: 100%;
   margin-bottom: 0;
@@ -251,8 +253,8 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
     text-align: left;
+    line-height: 135%;
   }
 
   .instructions ol {
@@ -317,24 +319,34 @@
     .lang-container {
       margin-right: 0;
     }
+
     .lang-bar {
       padding: 16px 9px;
     }
-          
+    
     .header {
-      padding: 18px 11px;
+      padding: 11px 18px;
+    }
+
+    .header img {
+      max-height: 60px;
+      padding: 0; /* Remove padding */
+      padding-right: 32px; /* Overwrite right*/
     }
     
     .container {
-      padding: 16px 24px 48px 16px; /* Bottom padding 48px */
+      padding-top: 16px;
+      padding-right: 24px;
+      padding-bottom: 48px;
+      padding-left: 16px;
     }
     
-    .container h2 {
+    .room-title {
       padding: 16px;
       font-size: 26px;
     }
 
-    .container h3 {
+    .device-title {
       font-size: 18px;
     }
     
@@ -344,11 +356,20 @@
 
     .instructions {
       font-size: 18px;
+      line-height: 133%;
     }
 
     .footer {
       padding: 16px;
       height: 109px;
+    }
+
+    .footer-heading {
+      padding: 0px;
+    }
+
+    .footer-contact {
+      padding: 0px;
     }
 
     /* Device section layout for mobile */
