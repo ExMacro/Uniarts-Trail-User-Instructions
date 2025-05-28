@@ -10,7 +10,7 @@ This repository contains a system for generating AV equipment instructions for r
 - `qrcodegenerator.php` - Creates QR codes linked to room-specific instructions
 - `user_instructions.php` - Displays AV equipment instructions for a specific room
 - `default_devices.php` - Contains device information and multilingual instructions
-- `config.php` - API configuration and credentials
+- `config.php` - Trail API configuration and credentials
 - `styles.css` - Styling for both the QR generator and instructions pages
 
 ## Features
@@ -42,7 +42,7 @@ This repository contains a system for generating AV equipment instructions for r
 ## Installation
 
 1. Upload all files to your web server
-2. Configure `config.php` with your API credentials
+2. Configure `config.php` with your Trail API credentials
 3. Create an `images` directory and add device images named according to the device model
 4. Create language-specific logo files (uniartslogo_fi.png, uniartslogo_sv.png, uniartslogo_en.png)
 
