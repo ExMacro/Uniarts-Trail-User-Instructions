@@ -4,7 +4,7 @@
 $code = 'YOUR_TRAIL_BASIC_AUTH_API_TOKEN_HERE';
 
 // Insert baseurl for images below, remember to define protocol and ending slash. Trail public API doesn't publish this infomation,
-// that's why we need to put images manually in folder. Use "M1234567.jpg" as filenaming.
+// Use the device model as filename, for example 4030c.png or btone_analog_2.png with underscores replacing spaces
 $img_baseurl = 'https://example.tld//path/to/images/';
 
 // Insert baseurl for Trail reqests below
