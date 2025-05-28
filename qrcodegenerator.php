@@ -66,11 +66,7 @@ if($showQrCode) {
 // Define all text content based on language
 $texts = [
     'fi' => [
-        'instructions' => [
-            'Skannaa yllä oleva QR-koodi mobiililaitteellasi.',
-            'Tämä avaa automaattisesti luodut käyttöohjeet huoneelle.',
-            'Seuraa käyttöohjeita.'
-        ],
+        'instructions' => 'Avaa käyttöohje skannaamalla QR-koodi puhelimesi kamerasovelluksella.',
         'instruction_text' => 'Syötä huonekoodi luodaksesi QR-koodin',
         'form' => [
             'placeholder' => 'Syötä huonekoodi',
@@ -83,11 +79,7 @@ $texts = [
         'subject_text' => 'Kysymys tilasta '
     ],
     'sv' => [
-        'instructions' => [
-            'Skanna QR-koden ovan med din mobila enhet.',
-            'Detta öppnar automatiskt genererade användarinstruktioner för rummet.',
-            'Följ användarinstruktionerna.'
-        ],
+        'instructions' => 'Öppna bruksanvisningen genom att skanna QR-koden med din telefons kameraapp.',
         'instruction_text' => 'Ange en rumskod för att generera en QR-kod',
         'form' => [
             'placeholder' => 'Ange rumskod',
@@ -100,11 +92,7 @@ $texts = [
         'subject_text' => 'En fråga om rum '
     ],
     'en' => [
-        'instructions' => [
-            'Scan the QR code above with your mobile device.',
-            'This opens automatically generated user instructions for the room.',
-            'Follow the user instructions.'
-        ],
+        'instructions' => 'Open the user manual by scanning the QR code with your phone\'s camera app.',
         'instruction_text' => 'Enter a room code to generate a QR code',
         'form' => [
             'placeholder' => 'Enter room code',
@@ -210,14 +198,17 @@ function e($string) {
 
 <div class="container">
     <div class="instructions">
-        <ol>
-        <?php foreach ($currentTexts['instructions'] as $instruction): ?>
-            <li><?php echo $instruction; ?></li>
-        <?php endforeach; ?>
-        </ol>
-        </div>
+        <?php 
+        foreach ($texts as $language => $content) {
+            echo '<div class="instruction-' . $language . '">';
+            echo '<strong>' . $languageNames[$language] . ':</strong><br>';
+            echo $content['instructions'];
+            echo '</div>';
+        }
+        ?>
     </div>
-        <?php endif; ?>
+</div>
+<?php endif; ?>
 <?php
 // Generate the footer HTML
 echo '<div class="footer">';
