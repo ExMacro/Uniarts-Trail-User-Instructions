@@ -255,6 +255,30 @@ $devices = [
             ]
         ]
     ]
+    "Meeting Owl 3" => [
+        "manufacturer" => "Owl Labs",
+        "type" => "Conference Camera",
+        "instructions" => [
+            "en" => [
+                "Place the Meeting Owl in the center of the table",
+                "Connect the USB-C cable from the Owl to your computer",
+                "Select 'Meeting Owl 3' as your camera, microphone, and speaker in your video conferencing application",
+                "The Owl will automatically focus on whoever is speaking"
+            ],
+            "fi" => [
+                "Aseta Meeting Owl pöydän keskelle",
+                "Yhdistä USB-C-kaapeli Owlista tietokoneeseesi",
+                "Valitse videoneuvottelusovelluksessasi 'Meeting Owl 3' kameraksi, mikrofoniksi ja kaiuttimeksi",
+                "Owl kohdistaa kameran automaattisesti puhuvaan henkilöön"
+            ],
+            "sv" => [
+                "Placera Meeting Owl i mitten av bordet",
+                "Anslut USB-C-kabeln från Owl till din dator",
+                "Välj 'Meeting Owl 3' som kamera, mikrofon och högtalare i ditt videokonferensprogram",
+                "Owl fokuserar automatiskt på den som talar"
+            ]
+        ]
+    ]
 ];
 
 // Lisää laitetyyppien käännöstaulukko
@@ -266,7 +290,8 @@ $deviceTypeTranslations = [
         'Loudspeakers' => 'Loudspeakers',
         'Bluetooth audio interface' => 'Bluetooth audio interface',
         'Audio Mixer' => 'Audio Mixer',
-        'Video Switcher' => 'Video Switcher'
+        'Video Switcher' => 'Video Switcher',
+        'Conference Camera' => 'Conference Camera'
     ],
     'fi' => [
         'Projector' => 'Projektori',
@@ -275,7 +300,8 @@ $deviceTypeTranslations = [
         'Loudspeakers' => 'Kaiuttimet',
         'Bluetooth audio interface' => 'Bluetooth-ääniliitäntä',
         'Audio Mixer' => 'Äänimikseri',
-        'Video Switcher' => 'Videovaihtaja'
+        'Video Switcher' => 'Videovaihtaja',
+        'Conference Camera' => 'Kokoustekniikka'
     ],
     'sv' => [
         'Projector' => 'Projektor',
@@ -284,7 +310,8 @@ $deviceTypeTranslations = [
         'Loudspeakers' => 'Högtalare',
         'Bluetooth audio interface' => 'Bluetooth-ljudgränssnitt',
         'Audio Mixer' => 'Ljudmixer',
-        'Video Switcher' => 'Videoomkopplare'
+        'Video Switcher' => 'Videoomkopplare',
+        'Conference Camera' => 'Konferensskamera'
     ]
 ];
 
