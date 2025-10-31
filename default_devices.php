@@ -254,7 +254,7 @@ $devices = [
                 "Välj HDMI-videokälla genom att trycka på INPUT1-knappen"
             ]
         ]
-    ]
+    ],
     "Meeting Owl 3" => [
         "manufacturer" => "Owl Labs",
         "type" => "Conference Camera",
@@ -281,7 +281,7 @@ $devices = [
     ]
 ];
 
-// Lisää laitetyyppien käännöstaulukko
+// Add translations for device types
 $deviceTypeTranslations = [
     'en' => [
         'Projector' => 'Projector',
@@ -315,7 +315,7 @@ $deviceTypeTranslations = [
     ]
 ];
 
-// Palauta sekä laitemääritykset että käännökset
+// Return the devices and translations
 return [
     'devices' => $devices,
     'translations' => $deviceTypeTranslations
