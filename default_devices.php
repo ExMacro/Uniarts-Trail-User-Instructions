@@ -301,7 +301,7 @@ $deviceTypeTranslations = [
         'Bluetooth audio interface' => 'Bluetooth-ääniliitäntä',
         'Audio Mixer' => 'Äänimikseri',
         'Video Switcher' => 'Videovaihtaja',
-        'Conference Camera' => 'Kokoustekniikka'
+        'Conference Camera' => 'Konferenssikamera'
     ],
     'sv' => [
         'Projector' => 'Projektor',
@@ -311,7 +311,7 @@ $deviceTypeTranslations = [
         'Bluetooth audio interface' => 'Bluetooth-ljudgränssnitt',
         'Audio Mixer' => 'Ljudmixer',
         'Video Switcher' => 'Videoomkopplare',
-        'Conference Camera' => 'Konferensskamera'
+        'Conference Camera' => 'Konferenskamera'
     ]
 ];
 
