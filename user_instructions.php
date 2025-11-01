@@ -115,25 +115,35 @@ function makeApiRequest($url, $code) {
     return json_decode($json, true);
 }
 
-// 1. Get initial search results
-$initialResults = makeApiRequest("https://api.trail.fi/api/v1/items?&search%5Bfree%5D=$room", $code);
+// 1. Search for locations using the room code
+$locationSearch = makeApiRequest("https://api.trail.fi/api/v1/locations?search%5Bfree%5D=$room", $code);
 
-// 2. Extract location ID from L/S code
+// 2. Find the correct location where code or name matches the search term
 $locationId = '';
-if (!empty($initialResults['data'])) {
-    foreach ($initialResults['data'] as $item) {
-        if (isset($item['location']['location']['identity'], $item['location']['location']['id']) && 
-            strpos($item['location']['location']['identity'], 'L/S') === 0) {
-            $locationId = $item['location']['location']['id'];
-            break;
+$locationName = '';
+
+if (!empty($locationSearch['data'])) {
+    // Loop through location results to find exact match
+    foreach ($locationSearch['data'] as $location) {
+        // Check if the location 'code' or 'name' field matches the room search term
+        if ((isset($location['code']) && $location['code'] === urldecode($room)) || 
+            (isset($location['name']) && stripos($location['name'], urldecode($room)) !== false)) {
+            // Store the location ID and name when match is found
+            $locationId = $location['id'];
+            $locationName = $location['name'];
+            break; // Stop searching once we find the first match
         }
     }
 }
 
-// 3. Get inventory list or use initial results if no location ID found
-$array = !empty($locationId) 
-    ? makeApiRequest("https://api.trail.fi/api/v1/items?&search%5Blocations%5D%5B%5D=$locationId", $code)
-    : $initialResults;
+// 3. Get inventory list for the found location, or return empty array if location not found
+if (!empty($locationId)) {
+    // Fetch all items in this specific location using the location ID
+    $array = makeApiRequest("https://api.trail.fi/api/v1/items?search%5Blocations%5D%5B%5D=$locationId", $code);
+} else {
+    // If no matching location was found, set empty array
+    $array = ['data' => []];
+}
 
 // Function to check if a specific model exists in the API response and count its quantity
 function checkModelExists($array, $model) {
