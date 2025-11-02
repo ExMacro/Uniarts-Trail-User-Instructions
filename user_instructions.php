@@ -7,6 +7,28 @@ $supportedLanguages = ['fi', 'sv', 'en'];
 if (!in_array($lang, $supportedLanguages)) {
     $lang = 'fi'; // Fallback to Finnish
 }
+
+// UI translations for different languages
+$translations = [
+    'fi' => [
+        'header_title' => 'Käyttöohje AV-laitteille',
+        'help_text' => 'Tarvitsetko lisää apua?',
+        'contact_text' => 'Ota yhteyttä AV-tukeen: ',
+        'subject_text' => 'Kysymys tilasta '
+    ],
+    'sv' => [
+        'header_title' => 'Bruksanvisning för AV-utrustning',
+        'help_text' => 'Behöver du mer hjälp?',
+        'contact_text' => 'Kontakta AV-supporten: ',
+        'subject_text' => 'En fråga om rum '
+    ],
+    'en' => [
+        'header_title' => 'User Manual for AV Equipment',
+        'help_text' => 'Do you need more help?',
+        'contact_text' => 'Please contact AV support: ',
+        'subject_text' => 'A question about room '
+    ]
+];
 ?>
 <html lang="<?php echo htmlspecialchars($lang, ENT_QUOTES, 'UTF-8'); ?>">
     <head>
@@ -60,31 +82,12 @@ if (!in_array($lang, $supportedLanguages)) {
         'en' => 'University of the Art Helsinki logo'
     ];
     
-    // Make sure we only accept supported languages
-    $supportedLanguages = ['fi', 'sv', 'en'];
-    if (!in_array($lang, $supportedLanguages)) {
-        $lang = 'fi'; // Fallback to Finnish
-    }
-    
     // Select logo file and alt text based on the current language
     $logoFile = $logoFiles[$lang];
     $altText = $altTexts[$lang];
     ?>
     <img src="<?php echo htmlspecialchars($logoFile, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($altText, ENT_QUOTES, 'UTF-8'); ?>" tabindex="0">
-    <?php
-    switch ($lang) {
-        case 'fi':
-            echo '<span class="header-title" tabindex="0">Käyttöohje AV-laitteille</span>';
-            break;
-        case 'sv':
-            echo '<span class="header-title" tabindex="0">Bruksanvisning för AV-utrustning</span>';
-            break;
-        case 'en':
-        default:
-            echo '<span class="header-title" tabindex="0">User Manual for AV Equipment</span>';
-            break;
-    }
-    ?>
+    <span class="header-title" tabindex="0"><?php echo htmlspecialchars($translations[$lang]['header_title'], ENT_QUOTES, 'UTF-8'); ?></span>
 </div>
 
 <?php
@@ -183,7 +186,7 @@ $deviceTypeTranslations = $data['translations'];
 
 function translateDeviceType($type, $lang) {
     global $deviceTypeTranslations;
-    
+
     if (isset($deviceTypeTranslations[$lang][$type])) {
         return $deviceTypeTranslations[$lang][$type];
     } elseif (isset($deviceTypeTranslations['en'][$type])) {
@@ -191,6 +194,17 @@ function translateDeviceType($type, $lang) {
     } else {
         return $type;
     }
+}
+
+// Function to display instruction list
+function displayInstructionList($instructions) {
+    echo "<div class='instructions'>";
+    echo "<ol>";
+    foreach ($instructions as $instruction) {
+        echo "<li>" . htmlspecialchars($instruction, ENT_QUOTES, 'UTF-8') . "</li>";
+    }
+    echo "</ol>";
+    echo "</div>";
 }
 
 // Define list of devices to display on the page
@@ -256,6 +270,8 @@ foreach ($deviceGroups as $type => $groupDevices) {
             // Get device details from the combined devices array
             $device = $devices[$deviceName];
             $manufacturerName = $device['manufacturer'];
+            // Translate device type once for this device
+            $deviceTypeText = translateDeviceType($device['type'], $lang);
             // Create image filename by converting the device name to lowercase and replacing spaces with underscores
             $baseImageName = strtolower(str_replace(' ', '_', $deviceName));
             // Check if PNG exists, otherwise use JPG
@@ -263,30 +279,17 @@ foreach ($deviceGroups as $type => $groupDevices) {
             // Start the device section container
             echo "<div class='device-section'>";
             // Display the device title (manufacturer + model + translated type)
-            echo "<h2 class='device-title' tabindex='0'>" . htmlspecialchars(translateDeviceType($device['type'], $lang), ENT_QUOTES, 'UTF-8') . "</h2>";
+            echo "<h2 class='device-title' tabindex='0'>" . htmlspecialchars($deviceTypeText, ENT_QUOTES, 'UTF-8') . "</h2>";
             // Create a flexbox container for the content (instructions + images)
             echo "<div class='device-content'>";
             // Instructions section
             echo "<div class='device-instructions' tabindex='0'>";
             // Check if instructions exist for the current language
             if (isset($device['instructions'][$lang]) && !empty($device['instructions'][$lang])) {
-                echo "<div class='instructions'>";
-                echo "<ol>";
-                // Loop through each instruction and display as a list item
-                foreach ($device['instructions'][$lang] as $instruction) {
-                    echo "<li>" . htmlspecialchars($instruction, ENT_QUOTES, 'UTF-8') . "</li>";
-                }
-                echo "</ol>";
-                echo "</div>";
+                displayInstructionList($device['instructions'][$lang]);
             } else if (isset($device['instructions']['en']) && !empty($device['instructions']['en'])) {
                 // Fallback to English if the selected language is not available
-                echo "<div class='instructions'>";
-                echo "<ol>";
-                foreach ($device['instructions']['en'] as $instruction) {
-                    echo "<li>" . htmlspecialchars($instruction, ENT_QUOTES, 'UTF-8') . "</li>";
-                }
-                echo "</ol>";
-                echo "</div>";
+                displayInstructionList($device['instructions']['en']);
             } else {
                 // Display message if no instructions are available
                 echo "<div class='instructions'>";
@@ -298,7 +301,6 @@ foreach ($deviceGroups as $type => $groupDevices) {
             echo "<div class='device-images' tabindex='0'>";
             // Loop through the quantity to display multiple instances of the same device
             for ($i = 0; $i < $quantity; $i++) {
-                $deviceTypeText = translateDeviceType($device['type'], $lang);
 //                $altText = $manufacturerName . " " . $deviceName . " " . $deviceTypeText;
                 $altText = $deviceTypeText;
                 echo "<img class='centered-image' src='images/" . htmlspecialchars($imageName, ENT_QUOTES, 'UTF-8') . "' alt='" . htmlspecialchars($altText, ENT_QUOTES, 'UTF-8') . "'>";
@@ -316,35 +318,12 @@ foreach ($deviceGroups as $type => $groupDevices) {
 echo "</div>"; // End container
 
 // Always show the footer with contact information
-switch ($lang) {
-    case 'fi':
-        $helpText = 'Tarvitsetko lisää apua?';
-        $contactText = 'Ota yhteyttä AV-tukeen: ';
-        $subjectText = 'Kysymys tilasta ';
-        break;
-    case 'sv':
-        $helpText = 'Behöver du mer hjälp?';
-        $contactText = 'Kontakta AV-supporten: ';
-        $subjectText = 'En fråga om rum ';
-        break;
-    case 'en':
-        $helpText = 'Do you need more help?';
-        $contactText = 'Please contact AV support: ';
-        $subjectText = 'A question about room ';
-        break;
-    default:
-        $helpText = 'Tarvitsetko lisää apua?';
-        $contactText = 'Ota yhteyttä AV-tukeen: ';
-        $subjectText = 'Kysymys tilasta ';
-        break;
-}
-
 echo '<div class="footer">';
-echo '<div class="footer-heading" tabindex="0">' . htmlspecialchars($helpText, ENT_QUOTES, 'UTF-8') . '</div>';
-echo '<div class="footer-contact" tabindex="0">' . htmlspecialchars($contactText, ENT_QUOTES, 'UTF-8');
+echo '<div class="footer-heading" tabindex="0">' . htmlspecialchars($translations[$lang]['help_text'], ENT_QUOTES, 'UTF-8') . '</div>';
+echo '<div class="footer-contact" tabindex="0">' . htmlspecialchars($translations[$lang]['contact_text'], ENT_QUOTES, 'UTF-8');
 
 $roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
-$subject = rawurlencode($subjectText . $roomName);
+$subject = rawurlencode($translations[$lang]['subject_text'] . $roomName);
 $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 
 echo '<a href="' . htmlspecialchars($mailto, ENT_QUOTES, 'UTF-8') . '">siba.avhelp@uniarts.fi</a>';
