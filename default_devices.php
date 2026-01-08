@@ -7,17 +7,14 @@ $devices = [
             "en" => [
                 "Use the control panel to power on the projector",
                 "Wait a moment for the projector to fully initialize",
-                "If no image appears, check that the correct input source is selected"
             ],
             "fi" => [
                 "Käytä ohjauspaneelia projektorin käynnistämiseen",
                 "Odota hetki, kunnes projektori on täysin käynnistynyt",
-                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna"
             ],
             "sv" => [
                 "Använd kontrollpanelen för att starta projektorn",
                 "Vänta tills projektorn har startat helt",
-                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald"             
             ]
         ]
     ],
@@ -28,17 +25,14 @@ $devices = [
             "en" => [
                 "Use the control panel to power on the projector",
                 "Wait a moment for the projector to fully initialize",
-                "If no image appears, check that the correct input source is selected"
             ],
             "fi" => [
                 "Käytä ohjauspaneelia projektorin käynnistämiseen",
                 "Odota hetki, kunnes projektori on täysin käynnistynyt",
-                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna"
             ],
             "sv" => [
                 "Använd kontrollpanelen för att starta projektorn",
                 "Vänta tills projektorn har startat helt",
-                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald"
             ]
         ]
     ],
@@ -109,17 +103,38 @@ $devices = [
             "en" => [
                 "Turn the display device on / off by pressing the ON/OFF button",
                 "Adjust volume using the VOLUME encoder",
-                "Select video input by pressing one of the SOURCE buttons (PC, HDMI, etc.)"
+                "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)"
             ],
             "fi" => [
-                "Käynnistä/sammuta näyttö painamalla DISPLAY ON/OFF -painiketta",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
                 "Säädä äänenvoimakkuutta VOLUME-säätimellä",
-                "Valitse videolähde painamalla jotain SOURCE-painikkeista (PC, HDMI, jne.)"
+                "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)"
             ],
             "sv" => [
-                "Slå på/av skärmen genom att trycka på DISPLAY ON/OFF-knappen",
+                "Slå på/av skärmen genom att trycka på ON/OFF-knappen",
                 "Justera volymen med VOLUME-enkoder",
-                "Välj videokälla genom att trycka på en av SOURCE-knapparna (PC, HDMI, etc.)"
+                "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)"
+            ]
+        ]
+    ],
+    "TLP Pro 1022T" => [
+        "manufacturer" => "Extron",
+        "type" => "Control Panel",
+        "instructions" => [
+            "en" => [
+                "Turn the AV system device on / off by pressing the ON/OFF button",
+                "Adjust volume using the VOLUME buttons",
+                "Select video and audio inputs by pressing one of the SOURCE buttons (PC, HDMI, etc.)"
+            ],
+            "fi" => [
+                "Käynnistä/sammuta AV-järjestelmä painamalla ON/OFF-painiketta",
+                "Säädä äänenvoimakkuutta VOLUME-painikkeilla",
+                "Valitse video- ja äänilähde painamalla jotain SOURCE-painikkeista (PC, HDMI, jne.)"
+            ],
+            "sv" => [
+                "Slå på/av AV-systemet genom att trycka på ON/OFF-knappen",
+                "Justera volymen med VOLUME-knapparna",
+                "Välj video und ljusdkälla genom att trycka på en av SOURCE-knapparna (PC, HDMI, osv.)"
             ]
         ]
     ],
@@ -128,19 +143,25 @@ $devices = [
         "type" => "Control Panel",
         "instructions" => [
             "en" => [
+                "Connect HDMI or USB-C cable to your laptop",
                 "Turn the display device on / off by pressing the ON/OFF button",
                 "Adjust volume using the VOLUME encoder",
-                "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)"
+                "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)",
+                "If no image appears, check that the correct input source is selected",
             ],
             "fi" => [
-                "Käynnistä/sammuta näyttö painamalla DISPLAY ON/OFF -painiketta",
+                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneesi",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
                 "Säädä äänenvoimakkuutta VOLUME-säätimellä",
-                "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, etc.)"
+                "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)",
+                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna",
             ],
             "sv" => [
-                "Slå på/av skärmen genom att trycka på DISPLAY ON/OFF-knappen",
+                "Anslut HDMI- eller USB-C-videokälla till din bärbara dator",
+                "Slå på/av skärmen genom att trycka på ON/OFF-knappen",
                 "Justera volymen med VOLUME-enkoder",
-                "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, etc.)"
+                "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)",
+                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald",
             ]
         ]
     ],
@@ -204,6 +225,36 @@ $devices = [
             ]
         ]
     ],
+    "Mercury V1i" => [
+        "manufacturer" => "Tannoy",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Adjust the speaker volume on the control panel."
+            ],
+            "fi" => [
+                "Säädä kaiuttimien äänenvoimakkuus ohjauspaneelilla."
+            ],
+            "sv" => [
+                "Justera högtalarnas volym på kontrollpanelen."
+            ]
+        ]
+    ],
+    "108P" => [
+        "manufacturer" => "L-Acoustics",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Adjust the speaker volume on the control panel."
+            ],
+            "fi" => [
+                "Säädä kaiuttimien äänenvoimakkuus ohjauspaneelilla."
+            ],
+            "sv" => [
+                "Justera högtalarnas volym på kontrollpanelen."
+            ]
+        ]
+    ],
     "MX822" => [
         "manufacturer" => "ART",
         "type" => "Audio Mixer",
@@ -245,13 +296,13 @@ $devices = [
         "type" => "Video Switcher",
         "instructions" => [
             "en" => [
-                "Select the HDMI video source by pressing the INPUT1 button"
+                "Select the video source using the INPUT buttons"
             ],
             "fi" => [
-                "Valitse HDMI-videolähde painamalla INPUT1-painiketta"
+                "Valitse kuvalähde INPUT-painikkeista"
             ],
             "sv" => [
-                "Välj HDMI-videokälla genom att trycka på INPUT1-knappen"
+                "Välj bildkälla med INPUT-knapparna"
             ]
         ]
     ],
@@ -278,7 +329,58 @@ $devices = [
                 "Owl fokuserar automatiskt på den som talar"
             ]
         ]
-    ]
+    ],
+    "Group" => [
+        "manufacturer" => "Logitech",
+        "type" => "Conference Camera",
+        "instructions" => [
+            "en" => [
+                "Connect the USB-C cable from the Logitech Group to your computer",
+                "Select 'Logitech' as your camera, microphone, and speaker in your video conferencing application",
+                "Use arrow buttons in Logitech group to zoom in / out and pan the camera",
+            ],
+            "fi" => [
+                "Yhdistä USB-C-kaapeli Logitech Groupista tietokoneeseesi",
+                "Valitse videoneuvottelusovelluksessasi 'Logitech' kameraksi, mikrofoniksi ja kaiuttimeksi",
+                "Käytä Logitech Groupin nuolipainikkeita kameran zoomaamiseen ja panorointiin",
+            ],
+            "sv" => [
+                "Anslut USB-C-kabeln från Logitech Group till din dator",
+                "Välj 'Logitech' som kamera, mikrofon och högtalare i ditt videokonferensprogram",
+                "Använd piltangenterna på Logitech Group för att zooma in / ut och panorera kameran",
+            ]
+        ]
+    ],
+    "L-12iD" => [
+            "manufacturer" => "Elmo",
+            "type" => "Document Camera",
+            "instructions" => [
+                "en" => [
+                    "Select document camera in the control panel",
+                ],
+                "fi" => [
+                    "Valitse dokumenttikamera ohjauspaneelista",
+                ],
+                "sv" => [
+                    "Välj dokumentkamera på kontrollpanelen",
+                ]
+            ]
+    ],
+    "BDP-103EU" => [
+            "manufacturer" => "Oppo",
+            "type" => "Multi-format player",
+            "instructions" => [
+                "en" => [
+                    "Select Multi-format player as audio sourve in the control panel",
+                ],
+                "fi" => [
+                    "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista",
+                ],
+                "sv" => [
+                    "Välj multiformatspelare som ljudkälla på kontrollpanelen",
+                ]
+            ]
+    ],
 ];
 
 // Add translations for device types
@@ -287,11 +389,12 @@ $deviceTypeTranslations = [
         'Projector' => 'Projector',
         'Display' => 'Display',
         'Control Panel' => 'Control Panel',
-        'Loudspeakers' => 'Loudspeakers',
         'Bluetooth audio interface' => 'Bluetooth audio interface',
         'Audio Mixer' => 'Audio Mixer',
         'Video Switcher' => 'Video Switcher',
-        'Conference Camera' => 'Conference Camera'
+        'Conference Camera' => 'Conference Camera',
+        'Document Camera' => 'Document Camera',
+        'Multi-format player' => 'Multi-format player'
     ],
     'fi' => [
         'Projector' => 'Projektori',
@@ -301,7 +404,9 @@ $deviceTypeTranslations = [
         'Bluetooth audio interface' => 'Bluetooth-ääniliitäntä',
         'Audio Mixer' => 'Äänimikseri',
         'Video Switcher' => 'Videovaihtaja',
-        'Conference Camera' => 'Konferenssikamera'
+        'Conference Camera' => 'Konferenssikamera',
+        'Document Camera' => 'Dokumenttikamera',
+        'Multi-format player' => 'Moniformaattisoitin'
     ],
     'sv' => [
         'Projector' => 'Projektor',
@@ -311,7 +416,9 @@ $deviceTypeTranslations = [
         'Bluetooth audio interface' => 'Bluetooth-ljudgränssnitt',
         'Audio Mixer' => 'Ljudmixer',
         'Video Switcher' => 'Videoomkopplare',
-        'Conference Camera' => 'Konferenskamera'
+        'Conference Camera' => 'Konferenskamera',
+        'Document Camera' => 'Dokumentkamera',
+        'Multi-format player' => 'Multiformatspelare'
     ]
 ];
 

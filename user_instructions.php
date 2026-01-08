@@ -168,15 +168,22 @@ function getDeviceGroup($type) {
     $loudspeakers = ["Loudspeakers"];
     $bluetoothDevices = ["Bluetooth audio interface"];
     $mixingDevices = ["Audio Mixer"];
-    $VideoSwitchers = ["Video Switcher"];
+    $videoSwitchers = ["Video Switcher"];
+    $conferenceCameras = ["Conference Camera"];
+    $documentCameras = ["Document Camera"];
+    $multiFormatPlayers = ["Multi-format player"];
+    
     if (in_array($type, $displayDevices)) return "display device";
     if (in_array($type, $controlSystems)) return "control system";
     if (in_array($type, $loudspeakers)) return "loudspeaker";
     if (in_array($type, $bluetoothDevices)) return "bluetooth";
     if (in_array($type, $mixingDevices)) return "mixer";
-    if (in_array($type, $VideoSwitchers)) return "video switcher";
+    if (in_array($type, $videoSwitchers)) return "video switcher";
+    if (in_array($type, $conferenceCameras)) return "conference camera";
+    if (in_array($type, $documentCameras)) return "document camera";
+    if (in_array($type, $multiFormatPlayers)) return "multi-format player";
 
-    return "other"; // Default group for unknown types
+    return "other";
 }
 
 // Load device information from external file
@@ -215,9 +222,12 @@ $deviceGroups = [
     'display device' => [],
     'video switcher' => [],
     'control system' => [],
+    'conference camera' => [],
+    'document camera' => [],
+    'multi-format player' => [],
     'bluetooth' => [],
     'mixer' => [],
-    'loudspeaker' => []
+    'loudspeaker' => [],
 ];
 
 // Group devices based on their type and check if they exist in the location
@@ -299,9 +309,9 @@ foreach ($deviceGroups as $type => $groupDevices) {
             echo "</div>"; // End instructions div
             // Images section
             echo "<div class='device-images' tabindex='0'>";
-            // Loop through the quantity to display multiple instances of the same device
-            for ($i = 0; $i < $quantity; $i++) {
-//                $altText = $manufacturerName . " " . $deviceName . " " . $deviceTypeText;
+            // Loop through the quantity to display multiple instances of the same device. Limit speaker images to max 2.
+            $imageCount = ($device['type'] === 'Loudspeakers') ? min($quantity, 2) : $quantity;
+            for ($i = 0; $i < $imageCount; $i++) {
                 $altText = $deviceTypeText;
                 echo "<img class='centered-image' src='images/" . htmlspecialchars($imageName, ENT_QUOTES, 'UTF-8') . "' alt='" . htmlspecialchars($altText, ENT_QUOTES, 'UTF-8') . "'>";
             }
