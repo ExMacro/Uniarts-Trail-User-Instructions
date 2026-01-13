@@ -115,7 +115,6 @@ function makeApiRequest($url, $code) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Basic '.$code]);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $json = curl_exec($ch);
-    curl_close($ch);
     return json_decode($json, true);
 }
 
