@@ -83,9 +83,9 @@ function e($string) {
     <?php
     // Logo files for different languages
     $logoFiles = [
-        'fi' => 'uniartslogo_fi.png',
-        'sv' => 'uniartslogo_sv.png',
-        'en' => 'uniartslogo_en.png'
+        'fi' => 'logo_fi.png',
+        'sv' => 'logo_sv.png',
+        'en' => 'logo_en.png'
     ];
     
     // Alt texts for different languages
