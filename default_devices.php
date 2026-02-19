@@ -36,6 +36,24 @@ $devices = [
             ]
         ]
     ],
+    "PowerLite EB-L690U" => [
+        "manufacturer" => "Epson",
+        "type" => "Projector",
+        "instructions" => [
+            "en" => [
+                "Use the switch in rack to power on the projector",
+                "Wait a moment for the projector to fully initialize",
+            ],
+            "fi" => [
+                "Käytä AV-räkissä olevaa kytkintä projektorin käynnistämiseen",
+                "Odota hetki, kunnes projektori on täysin käynnistynyt",
+            ],
+            "sv" => [
+                "Använd strömbrytaren i AV-racket för att starta projektorn",
+                "Vänta tills projektorn har startat helt",
+            ]
+        ]
+    ],
     "52LD550N" => [
         "manufacturer" => "LG",
         "type" => "Display",
@@ -83,6 +101,36 @@ $devices = [
     ],
     "MultiSync E558" => [
         "manufacturer" => "NEC",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
+    "PN-M552" => [
+        "manufacturer" => "Sharp",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
+    "PN-M752" => [
+        "manufacturer" => "Sharp",
         "type" => "Display",
         "instructions" => [
             "en" => [
@@ -162,6 +210,21 @@ $devices = [
                 "Justera volymen med VOLUME-enkoder",
                 "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)",
                 "Om ingen bild visas, kontrollera att rätt ingångskälla är vald",
+            ]
+        ]
+    ],
+    "MVC 121 xi" => [
+        "manufacturer" => "Extron",
+        "type" => "Control Panel",
+        "instructions" => [
+            "en" => [
+                "Adjust volume using the VOLUME encoder",
+            ],
+            "fi" => [
+                "Säädä äänenvoimakkuutta VOLUME-säätimellä",
+            ],
+            "sv" => [
+                "Justera volymen med VOLUME-enkoder",
             ]
         ]
     ],
@@ -292,6 +355,36 @@ $devices = [
         ]
     ],
     "SW4 HD 4K" => [
+        "manufacturer" => "Extron",
+        "type" => "Video Switcher",
+        "instructions" => [
+            "en" => [
+                "Select the video source using the INPUT buttons"
+            ],
+            "fi" => [
+                "Valitse kuvalähde INPUT-painikkeista"
+            ],
+            "sv" => [
+                "Välj bildkälla med INPUT-knapparna"
+            ]
+        ]
+    ],
+    "SW4 HD 4K PLUS" => [
+        "manufacturer" => "Extron",
+        "type" => "Video Switcher",
+        "instructions" => [
+            "en" => [
+                "Select the video source using the INPUT buttons"
+            ],
+            "fi" => [
+                "Valitse kuvalähde INPUT-painikkeista"
+            ],
+            "sv" => [
+                "Välj bildkälla med INPUT-knapparna"
+            ]
+        ]
+    ],
+    "DTP T SW4 HD 4K" => [
         "manufacturer" => "Extron",
         "type" => "Video Switcher",
         "instructions" => [

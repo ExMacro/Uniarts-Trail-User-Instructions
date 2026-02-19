@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <?php
+// Send security header before any HTML output
+header('X-Content-Type-Options: nosniff');
+
 // Get language from URL parameter, default to Finnish if not specified
-$lang = isset($_GET['lang']) ? $_GET['lang'] : 'fi';
+$lang = $_GET['lang'] ?? 'fi';
+
 // Make sure we only accept supported languages
 $supportedLanguages = ['fi', 'sv', 'en'];
 if (!in_array($lang, $supportedLanguages)) {
-    $lang = 'fi'; // Fallback to Finnish
+    $lang = 'fi';
 }
 
 // UI translations for different languages
@@ -14,23 +18,31 @@ $translations = [
         'header_title' => 'Käyttöohje AV-laitteille',
         'help_text' => 'Tarvitsetko lisää apua?',
         'contact_text' => 'Ota yhteyttä AV-tukeen: ',
-        'subject_text' => 'Kysymys tilasta '
+        'subject_text' => 'Kysymys tilasta ',
+        'no_image' => 'Ei kuvaa'
     ],
     'sv' => [
         'header_title' => 'Bruksanvisning för AV-utrustning',
         'help_text' => 'Behöver du mer hjälp?',
         'contact_text' => 'Kontakta AV-supporten: ',
-        'subject_text' => 'En fråga om rum '
+        'subject_text' => 'En fråga om rum ',
+        'no_image' => 'Ingen bild'
     ],
     'en' => [
         'header_title' => 'User Manual for AV Equipment',
         'help_text' => 'Do you need more help?',
         'contact_text' => 'Please contact AV support: ',
-        'subject_text' => 'A question about room '
+        'subject_text' => 'A question about room ',
+        'no_image' => 'No device image'
     ]
 ];
+
+// Function to safely escape output to prevent XSS attacks
+function e($string) {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
 ?>
-<html lang="<?php echo htmlspecialchars($lang, ENT_QUOTES, 'UTF-8'); ?>">
+<html lang="<?php echo e($lang); ?>">
     <head>
         <title>Käyttöohje AV-laitteille</title>
         <meta charset="UTF-8">
@@ -53,6 +65,7 @@ $translations = [
             
             // Copy all current GET parameters
             $params = $_GET;
+            
             // Update only the language parameter
             $params['lang'] = $language;
             
@@ -86,20 +99,26 @@ $translations = [
     $logoFile = $logoFiles[$lang];
     $altText = $altTexts[$lang];
     ?>
-    <img src="<?php echo htmlspecialchars($logoFile, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($altText, ENT_QUOTES, 'UTF-8'); ?>" tabindex="0">
-    <span class="header-title" tabindex="0"><?php echo htmlspecialchars($translations[$lang]['header_title'], ENT_QUOTES, 'UTF-8'); ?></span>
+    <img src="<?php echo e($logoFile); ?>" alt="<?php echo e($altText); ?>" tabindex="0">
+    <span class="header-title" tabindex="0"><?php echo e($translations[$lang]['header_title']); ?></span>
 </div>
 
 <?php
 // Include configuration file with API credentials and settings
 require_once('./config.php');
 
-// Process URL parameters and handle Finnish characters
-$room = isset($_GET['room']) ? $_GET['room'] : '';
-if($room) {
-    $room = str_replace(['å', 'Å', 'ä', 'Ä', 'ö', 'Ö'],
-                         ['%C3%A5', '%C3%85', '%C3%A4', '%C3%84', '%C3%B6', '%C3%96'],
-                         $room);
+// Process URL parameters and validate room code
+$room = $_GET['room'] ?? '';
+$room = trim($room);
+
+// Validate room code format
+if ($room && !preg_match('/^[A-Za-z0-9\s\-_åäöÅÄÖ]+$/u', $room)) {
+    $room = '';
+}
+
+// Encode room code for API request
+if ($room) {
+    $room = rawurlencode($room);
 }
 
 // Check for API key
@@ -108,20 +127,83 @@ if(empty($code)) {
     die;
 }
 
-// Function to make API requests
+// Function to make API requests with automatic pagination
 function makeApiRequest($url, $code) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Basic '.$code]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $json = curl_exec($ch);
-    return json_decode($json, true);
+    $allData = [];
+    $page = 1;
+    $maxPages = 100; // Safety limit
+    
+    do {
+        $separator = (strpos($url, '?') !== false) ? '&' : '?';
+        $paginatedUrl = $url . $separator . "page=$page&per_page=100";
+        
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $paginatedUrl,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json',
+                'Authorization: Basic ' . $code
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 10,
+        ]);
+        
+        $json = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+        if ($json === false || $httpCode !== 200) {
+            error_log("Trail API error: HTTP $httpCode for $paginatedUrl");
+            break;
+        }
+        
+        $response = json_decode($json, true) ?? ['data' => []];
+        $allData = array_merge($allData, $response['data'] ?? []);
+        
+        $totalPages = $response['metadata']['total_pages'] ?? 1;
+        $page++;
+        
+    } while ($page <= $totalPages && $page <= $maxPages);
+    
+    return ['data' => $allData];
 }
 
-// 1. Search for locations using the room code
+// Function to get device image URL from items API data
+function getDeviceImageUrl($array, $modelName) {
+    // Apply naming convention: lowercase, spaces to underscores
+    $expectedBasename = strtolower(str_replace(' ', '_', $modelName));
+    
+    foreach ($array['data'] as $item) {
+        if (isset($item['model']['name']) && $item['model']['name'] === $modelName) {
+            if (isset($item['images']) && is_array($item['images']) && !empty($item['images'])) {
+                // Search for image matching naming convention
+                foreach ($item['images'] as $image) {
+                    $imageUrl = $image['url'] ?? null;
+                    if ($imageUrl) {
+                        $filename = basename(parse_url($imageUrl, PHP_URL_PATH));
+                        // Remove query string parameters if present
+                        $filename = strtok($filename, '?');
+                        // Get filename without extension
+                        $filenameWithoutExt = pathinfo($filename, PATHINFO_FILENAME);
+                        
+                        // Check if it matches expected naming convention
+                        if ($filenameWithoutExt === $expectedBasename) {
+                            return $imageUrl;
+                        }
+                    }
+                }
+            }
+            // If no matching image found, return null
+            return null;
+        }
+    }
+    
+    return null;
+}
+
+// Search for locations using the room code
 $locationSearch = makeApiRequest("https://api.trail.fi/api/v1/locations?search%5Bfree%5D=$room", $code);
 
-// 2. Find the correct location where code or name matches the search term
+// Find the correct location where code or name matches the search term
 $locationId = '';
 $locationName = '';
 
@@ -134,12 +216,12 @@ if (!empty($locationSearch['data'])) {
             // Store the location ID and name when match is found
             $locationId = $location['id'];
             $locationName = $location['name'];
-            break; // Stop searching once we find the first match
+            break;
         }
     }
 }
 
-// 3. Get inventory list for the found location, or return empty array if location not found
+// Get inventory list for the found location, or return empty array if location not found
 if (!empty($locationId)) {
     // Fetch all items in this specific location using the location ID
     $array = makeApiRequest("https://api.trail.fi/api/v1/items?search%5Blocations%5D%5B%5D=$locationId", $code);
@@ -152,7 +234,7 @@ if (!empty($locationId)) {
 function checkModelExists($array, $model) {
     $quantity = 0;
     foreach ($array['data'] as $item) {
-        if (isset($item['model']['name']) && $item['model']['name'] == $model) {
+        if (isset($item['model']['name']) && $item['model']['name'] === $model) {
             // If device found, add to quantity
             $quantity += isset($item['quantity']) ? $item['quantity'] : 1;
         }
@@ -207,7 +289,7 @@ function displayInstructionList($instructions) {
     echo "<div class='instructions'>";
     echo "<ol>";
     foreach ($instructions as $instruction) {
-        echo "<li>" . htmlspecialchars($instruction, ENT_QUOTES, 'UTF-8') . "</li>";
+        echo "<li>" . e($instruction) . "</li>";
     }
     echo "</ol>";
     echo "</div>";
@@ -265,7 +347,7 @@ if (!empty($array['data'])) {
 }
 
 // Show room name or a default message if not found
-echo "<h1 class='room-title' tabindex='0'>" . (!empty($roomName) ? htmlspecialchars($roomName, ENT_QUOTES, 'UTF-8') : "Tilan tietoja ei löytynyt") . "</h1>";
+echo "<h1 class='room-title' tabindex='0'>" . (!empty($roomName) ? e($roomName) : "Tilan tietoja ei löytynyt") . "</h1>";
 
 // Display devices by group type
 foreach ($deviceGroups as $type => $groupDevices) {
@@ -276,23 +358,29 @@ foreach ($deviceGroups as $type => $groupDevices) {
             $deviceCount++;
             $deviceName = $deviceData['name'];
             $quantity = $deviceData['quantity'];
+            
             // Get device details from the combined devices array
             $device = $devices[$deviceName];
             $manufacturerName = $device['manufacturer'];
+            
             // Translate device type once for this device
             $deviceTypeText = translateDeviceType($device['type'], $lang);
-            // Create image filename by converting the device name to lowercase and replacing spaces with underscores
-            $baseImageName = strtolower(str_replace(' ', '_', $deviceName));
-            // Check if PNG exists, otherwise use JPG
-            $imageName = file_exists("images/$baseImageName.png") ? "$baseImageName.png" : "$baseImageName.jpg";
+            
+            // Try to get image URL from API
+            $imageUrl = getDeviceImageUrl($array, $deviceName);
+            
             // Start the device section container
             echo "<div class='device-section'>";
+            
             // Display the device title (manufacturer + model + translated type)
-            echo "<h2 class='device-title' tabindex='0'>" . htmlspecialchars($deviceTypeText, ENT_QUOTES, 'UTF-8') . "</h2>";
+            echo "<h2 class='device-title' tabindex='0'>" . e($deviceTypeText) . "</h2>";
+            
             // Create a flexbox container for the content (instructions + images)
             echo "<div class='device-content'>";
+            
             // Instructions section
             echo "<div class='device-instructions' tabindex='0'>";
+            
             // Check if instructions exist for the current language
             if (isset($device['instructions'][$lang]) && !empty($device['instructions'][$lang])) {
                 displayInstructionList($device['instructions'][$lang]);
@@ -305,18 +393,28 @@ foreach ($deviceGroups as $type => $groupDevices) {
                 echo "<p>No specific instructions available for this device.</p>";
                 echo "</div>";
             }
-            echo "</div>"; // End instructions div
+            echo "</div>";
+            
             // Images section
             echo "<div class='device-images' tabindex='0'>";
-            // Loop through the quantity to display multiple instances of the same device. Limit speaker images to max 2.
-            $imageCount = ($device['type'] === 'Loudspeakers') ? min($quantity, 2) : $quantity;
-            for ($i = 0; $i < $imageCount; $i++) {
-                $altText = $deviceTypeText;
-                echo "<img class='centered-image' src='images/" . htmlspecialchars($imageName, ENT_QUOTES, 'UTF-8') . "' alt='" . htmlspecialchars($altText, ENT_QUOTES, 'UTF-8') . "'>";
+            
+            if ($imageUrl) {
+                // Show images if found in API
+                $imageCount = ($device['type'] === 'Loudspeakers') ? min($quantity, 2) : $quantity;
+                for ($i = 0; $i < $imageCount; $i++) {
+                    $altText = $deviceTypeText;
+                    echo "<img class='centered-image' src='" . e($imageUrl) . "' alt='" . e($altText) . "'>";
+                }
+            } else {
+                // Show message if no image found
+                echo "<div class='instructions'><p>" . e($translations[$lang]['no_image']) . "</p></div>";
             }
-            echo "</div>"; // End image div
-            echo "</div>"; // End device-content div
-            echo "</div>"; // End device-section div
+            
+            echo "</div>";
+            
+            echo "</div>";
+            echo "</div>";
+            
             // Add spacer between device sections, but not after the last device
             if ($deviceCount < $totalDevices) {
                 echo "<div class='device-spacer'></div>";
@@ -324,29 +422,31 @@ foreach ($deviceGroups as $type => $groupDevices) {
         }
     }
 }
-echo "</div>"; // End container
+echo "</div>";
 
 // Always show the footer with contact information
 echo '<div class="footer">';
-echo '<div class="footer-heading" tabindex="0">' . htmlspecialchars($translations[$lang]['help_text'], ENT_QUOTES, 'UTF-8') . '</div>';
-echo '<div class="footer-contact" tabindex="0">' . htmlspecialchars($translations[$lang]['contact_text'], ENT_QUOTES, 'UTF-8');
+echo '<div class="footer-heading" tabindex="0">' . e($translations[$lang]['help_text']) . '</div>';
+echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['contact_text']);
 
 $roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
 $subject = rawurlencode($translations[$lang]['subject_text'] . $roomName);
 $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 
-echo '<a href="' . htmlspecialchars($mailto, ENT_QUOTES, 'UTF-8') . '">siba.avhelp@uniarts.fi</a>';
+echo '<a href="' . e($mailto) . '">siba.avhelp@uniarts.fi</a>';
 echo '</div>';
 echo '</div>';
 
-// print API URI and PHP array for debugging purposes, set debug as url parameter
+// Print API URI and PHP array for debugging purposes, set debug as url parameter
 if(isset($_GET['debug'])) {
-     echo '<h3>Query URL</h4>';
-     echo $url;
-     echo '<h3>PHP array</h4>';
-     echo '<pre>'; print_r($array); echo '</pre>';
-     echo '<p>end of report</p>';
-};
+     echo '<div style="padding: 32px; text-align: left; background-color: #f8f8f8; margin: 20px 0;">';
+     echo '<h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Query URL</h2>';
+     echo '<pre style="overflow-x: auto; font-size: 12px;">' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '</pre>';
+     echo '<h2 style="font-size: 20px; font-weight: bold; margin: 20px 0 10px 0;">PHP array</h2>';
+     echo '<pre style="overflow-x: auto; font-size: 12px;">'; print_r($array); echo '</pre>';
+     echo '<p style="margin-top: 20px;">End of report</p>';
+     echo '</div>';
+}
 ?>
 </body>
 </html>
