@@ -7,11 +7,13 @@ This repository contains a system for generating AV equipment instructions for r
 
 ## Files
 
-- `qrcodegenerator.php` - Creates QR codes linked to room-specific instructions
-- `user_instructions.php` - Displays AV equipment instructions for a specific room
-- `default_devices.php` - Contains device information and multilingual instructions
-- `config.php` - Trail API configuration and credentials
-- `styles.css` - Styling for both the QR generator and instructions pages
+| File | Description |
+|---|---|
+| `qrcodegenerator.php` | Creates QR codes linked to room-specific instructions |
+| `user_instructions.php` | Displays AV equipment instructions for a specific room |
+| `default_devices.php` | Contains device information and multilingual instructions |
+| `config.php` | Trail API configuration and credentials *(not included, see `config.example.php`)* |
+| `styles.css` | Styling for both the QR generator and instructions pages |
 
 ## Features
 
@@ -42,10 +44,36 @@ This repository contains a system for generating AV equipment instructions for r
 ## Installation
 
 1. Upload all files to your web server
-2. Configure `config.php` with your Trail API credentials
-3. Create an `images` directory and add device images named according to the device model
-4. Create language-specific logo files (uniartslogo_fi.png, uniartslogo_sv.png, uniartslogo_en.png)
+2. Copy `config.example.php` to `config.php` and fill in your Trail API credentials
+3. Create language-specific logo files
+   - `logo_fi.png`
+   - `logo_sv.png`
+   - `logo_en.png`
+  
+## Device Images
 
+Device images are stored and managed in Trail. The system fetches them automatically via the Trail API when displaying instructions.
+
+### Image Naming Convention
+
+Images must be uploaded to Trail and attached to the correct device item. The filename must follow this convention for the system to recognize it:
+
+- Use the **device model name** as the filename
+- Convert to **lowercase**
+- Replace **spaces with underscores**
+- Use **PNG format** with transparent background
+
+**Examples:**
+
+| Model name in Trail | Required filename |
+|---|---|
+| `MLC Plus 100` | `mlc_plus_100.png` |
+| `BTone analog 2` | `btone_analog_2.png` |
+| `Meeting Owl 3` | `meeting_owl_3.png` |
+| `4030C` | `4030c.png` |
+
+> If no matching image is found, the instructions page displays a localised "No device image" message.
+> 
 ## Author
 
 Marko Myöhänen, University of the Arts Helsinki
