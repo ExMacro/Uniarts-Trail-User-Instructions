@@ -201,7 +201,7 @@ function getDeviceImageUrl($array, $modelName) {
 }
 
 // Search for locations using the room code
-$locationSearch = makeApiRequest("https://api.trail.fi/api/v1/locations?search%5Bfree%5D=$room", $code);
+$locationSearch = makeApiRequest($trail_locations_baseurl . "?search%5Bfree%5D=$room", $code);
 
 // Find the correct location where code or name matches the search term
 $locationId = '';
@@ -224,7 +224,7 @@ if (!empty($locationSearch['data'])) {
 // Get inventory list for the found location, or return empty array if location not found
 if (!empty($locationId)) {
     // Fetch all items in this specific location using the location ID
-    $array = makeApiRequest("https://api.trail.fi/api/v1/items?search%5Blocations%5D%5B%5D=$locationId", $code);
+    $array = makeApiRequest($trail_items_baseurl . "?search%5Blocations%5D%5B%5D=$locationId", $code);
 } else {
     // If no matching location was found, set empty array
     $array = ['data' => []];
@@ -441,7 +441,7 @@ echo '</div>';
 if(isset($_GET['debug'])) {
      echo '<div style="padding: 32px; text-align: left; background-color: #f8f8f8; margin: 20px 0;">';
      echo '<h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Query URL</h2>';
-     echo '<pre style="overflow-x: auto; font-size: 12px;">' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '</pre>';
+     echo '<pre style="overflow-x: auto; font-size: 12px;">' . htmlspecialchars($trail_items_baseurl, ENT_QUOTES, 'UTF-8') . '</pre>';
      echo '<h2 style="font-size: 20px; font-weight: bold; margin: 20px 0 10px 0;">PHP array</h2>';
      echo '<pre style="overflow-x: auto; font-size: 12px;">'; print_r($array); echo '</pre>';
      echo '<p style="margin-top: 20px;">End of report</p>';
