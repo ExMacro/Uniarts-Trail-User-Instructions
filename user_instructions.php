@@ -427,7 +427,6 @@ echo '<div class="footer">';
 echo '<div class="footer-heading" tabindex="0">' . e($translations[$lang]['help_text']) . '</div>';
 echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['contact_text']);
 
-$roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
 $subject = rawurlencode($translations[$lang]['subject_text'] . $roomName);
 $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 
