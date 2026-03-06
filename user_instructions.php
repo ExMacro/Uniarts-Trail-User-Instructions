@@ -12,6 +12,15 @@ if (!in_array($lang, $supportedLanguages)) {
     $lang = 'fi';
 }
 
+// Process URL parameters and validate room code
+$room = $_GET['room'] ?? '';
+$room = trim($room);
+
+// Validate room code format
+if ($room && !preg_match('/^[A-Za-z0-9\s\-_åäöÅÄÖ]+$/u', $room)) {
+    $room = '';
+}
+
 // UI translations for different languages
 $translations = [
     'fi' => [
@@ -63,13 +72,11 @@ function e($string) {
         foreach ($supportedLanguages as $language) {
             $class = ($language === $lang) ? "class='active'" : "";
             
-            // Copy all current GET parameters
-            $params = $_GET;
-            
-            // Update only the language parameter
-            $params['lang'] = $language;
-            
-            // Build URL from parameters
+            // Build URL from known parameters only
+            $params = ['lang' => $language];
+            if (!empty($room)) {
+                $params['room'] = $room;
+            }
             $queryString = http_build_query($params);
             
             echo "<a href='?" . $queryString . "' $class>" . $languageNames[$language] . "</a> ";
@@ -106,15 +113,6 @@ function e($string) {
 <?php
 // Include configuration file with API credentials and settings
 require_once('./config.php');
-
-// Process URL parameters and validate room code
-$room = $_GET['room'] ?? '';
-$room = trim($room);
-
-// Validate room code format
-if ($room && !preg_match('/^[A-Za-z0-9\s\-_åäöÅÄÖ]+$/u', $room)) {
-    $room = '';
-}
 
 // Encode room code for API request
 if ($room) {
