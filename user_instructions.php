@@ -214,7 +214,7 @@ if (!empty($locationSearch['data'])) {
         if ((isset($location['code']) && $location['code'] === urldecode($room)) || 
             (isset($location['name']) && stripos($location['name'], urldecode($room)) !== false)) {
             // Store the location ID and name when match is found
-            $locationId = $location['id'];
+            $locationId = is_numeric($location['id']) ? (int)$location['id'] : '';
             $locationName = $location['name'];
             break;
         }
