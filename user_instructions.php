@@ -436,17 +436,6 @@ $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 echo '<a href="' . e($mailto) . '">siba.avhelp@uniarts.fi</a>';
 echo '</div>';
 echo '</div>';
-
-// Print API URI and PHP array for debugging purposes, set debug as url parameter
-if(isset($_GET['debug'])) {
-     echo '<div style="padding: 32px; text-align: left; background-color: #f8f8f8; margin: 20px 0;">';
-     echo '<h2 style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Query URL</h2>';
-     echo '<pre style="overflow-x: auto; font-size: 12px;">' . htmlspecialchars($trail_items_baseurl, ENT_QUOTES, 'UTF-8') . '</pre>';
-     echo '<h2 style="font-size: 20px; font-weight: bold; margin: 20px 0 10px 0;">PHP array</h2>';
-     echo '<pre style="overflow-x: auto; font-size: 12px;">'; print_r($array); echo '</pre>';
-     echo '<p style="margin-top: 20px;">End of report</p>';
-     echo '</div>';
-}
 ?>
 </body>
 </html>
