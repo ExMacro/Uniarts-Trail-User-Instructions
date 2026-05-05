@@ -84,6 +84,21 @@ $devices = [
             ]
         ]
     ],
+    "65UL3E" => [
+        "manufacturer" => "LG",
+        "type" => "Display",
+            "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
     "60LD550N" => [
         "manufacturer" => "LG",
         "type" => "Display",
@@ -187,6 +202,33 @@ $devices = [
         ]
     ],
     "MLC Plus 100" => [
+        "manufacturer" => "Extron",
+        "type" => "Control Panel",
+        "instructions" => [
+            "en" => [
+                "Connect HDMI or USB-C cable to your laptop",
+                "Turn the display device on / off by pressing the ON/OFF button",
+                "Adjust volume using the VOLUME encoder",
+                "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)",
+                "If no image appears, check that the correct input source is selected",
+            ],
+            "fi" => [
+                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneesi",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
+                "Säädä äänenvoimakkuutta VOLUME-säätimellä",
+                "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)",
+                "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna",
+            ],
+            "sv" => [
+                "Anslut HDMI- eller USB-C-videokälla till din bärbara dator",
+                "Slå på/av skärmen genom att trycka på ON/OFF-knappen",
+                "Justera volymen med VOLUME-enkoder",
+                "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)",
+                "Om ingen bild visas, kontrollera att rätt ingångskälla är vald",
+            ]
+        ]
+    ],
+    "MLC Plus 200" => [
         "manufacturer" => "Extron",
         "type" => "Control Panel",
         "instructions" => [
