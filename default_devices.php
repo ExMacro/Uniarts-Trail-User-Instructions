@@ -270,6 +270,21 @@ $devices = [
             ]
         ]
     ],
+    "MSR400" => [
+        "manufacturer" => "Yamaha",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Adjust volume from rack mixer"
+            ],
+            "fi" => [
+                "Säädä äänenvoimakkuutta AV-räkissä olevasta mikseristä"
+            ],
+            "sv" => [
+                "Justera volymen från mixer i AV-racket"
+            ]
+        ]
+    ],
     "4030B" => [
         "manufacturer" => "Genelec",
         "type" => "Loudspeakers",
@@ -320,13 +335,13 @@ $devices = [
         "type" => "Loudspeakers",
         "instructions" => [
             "en" => [
-                "Adjust the speaker volume on the control panel."
+                "Adjust the speaker volume on the control panel or amplifier."
             ],
             "fi" => [
-                "Säädä kaiuttimien äänenvoimakkuus ohjauspaneelilla."
+                "Säädä kaiuttimien äänenvoimakkuus ohjauspaneelilla tai vahvistimesta."
             ],
             "sv" => [
-                "Justera högtalarnas volym på kontrollpanelen."
+                "Justera högtalarnas volym på kontrollpanelen eller förstärkaren."
             ]
         ]
     ],
@@ -501,6 +516,21 @@ $devices = [
                 ]
             ]
     ],
+    "BDP-93EU" => [
+            "manufacturer" => "Oppo",
+            "type" => "Multi-format player",
+            "instructions" => [
+                "en" => [
+                    "Select Multi-format player as audio sourve in the control panel",
+                ],
+                "fi" => [
+                    "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista",
+                ],
+                "sv" => [
+                    "Välj multiformatspelare som ljudkälla på kontrollpanelen",
+                ]
+            ]
+    ],
     "BDP-103EU" => [
             "manufacturer" => "Oppo",
             "type" => "Multi-format player",
@@ -513,6 +543,21 @@ $devices = [
                 ],
                 "sv" => [
                     "Välj multiformatspelare som ljudkälla på kontrollpanelen",
+                ]
+            ]
+    ],
+    "Topaz AM5" => [
+            "manufacturer" => "Cambridge Audio",
+            "type" => "Amplifier",
+            "instructions" => [
+                "en" => [
+                    "Adjust the volume using the amplifier's volume control.",
+                ],
+                "fi" => [
+                    "Säädä äänenvoimakkuutta vahvistimen äänenvoimakkuussäätimellä.",
+                ],
+                "sv" => [
+                    "Justera volymen med förstärkarens volymkontroll.",
                 ]
             ]
     ],
@@ -529,7 +574,8 @@ $deviceTypeTranslations = [
         'Video Switcher' => 'Video Switcher',
         'Conference Camera' => 'Conference Camera',
         'Document Camera' => 'Document Camera',
-        'Multi-format player' => 'Multi-format player'
+        'Multi-format player' => 'Multi-format player',
+        'Amplifier' => 'Amplifier',
     ],
     'fi' => [
         'Projector' => 'Projektori',
@@ -541,7 +587,8 @@ $deviceTypeTranslations = [
         'Video Switcher' => 'Videovaihtaja',
         'Conference Camera' => 'Konferenssikamera',
         'Document Camera' => 'Dokumenttikamera',
-        'Multi-format player' => 'Moniformaattisoitin'
+        'Multi-format player' => 'Moniformaattisoitin',
+        'Amplifier' => 'Vahvistin',
     ],
     'sv' => [
         'Projector' => 'Projektor',
@@ -553,7 +600,8 @@ $deviceTypeTranslations = [
         'Video Switcher' => 'Videoomkopplare',
         'Conference Camera' => 'Konferenskamera',
         'Document Camera' => 'Dokumentkamera',
-        'Multi-format player' => 'Multiformatspelare'
+        'Multi-format player' => 'Multiformatspelare',
+        'Amplifier' => 'Förstärkare',
     ]
 ];
 

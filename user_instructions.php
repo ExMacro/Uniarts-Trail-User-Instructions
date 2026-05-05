@@ -251,7 +251,8 @@ function getDeviceGroup($type) {
     $conferenceCameras = ["Conference Camera"];
     $documentCameras = ["Document Camera"];
     $multiFormatPlayers = ["Multi-format player"];
-    
+    $amplifiers = ["Amplifier"];
+
     if (in_array($type, $displayDevices)) return "display device";
     if (in_array($type, $controlSystems)) return "control system";
     if (in_array($type, $loudspeakers)) return "loudspeaker";
@@ -261,7 +262,7 @@ function getDeviceGroup($type) {
     if (in_array($type, $conferenceCameras)) return "conference camera";
     if (in_array($type, $documentCameras)) return "document camera";
     if (in_array($type, $multiFormatPlayers)) return "multi-format player";
-
+    if (in_array($type, $amplifiers)) return "amplifier";
     return "other";
 }
 
