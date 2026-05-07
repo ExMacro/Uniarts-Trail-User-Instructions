@@ -307,6 +307,7 @@ $deviceGroups = [
     'multi-format player' => [],
     'bluetooth' => [],
     'mixer' => [],
+    'amplifier' => [],
     'loudspeaker' => [],
 ];
 
