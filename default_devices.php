@@ -584,6 +584,7 @@ $deviceTypeTranslations = [
         'Projector' => 'Projector',
         'Display' => 'Display',
         'Control Panel' => 'Control Panel',
+        'Loudspeakers' => 'Loudspeakers',
         'Bluetooth audio interface' => 'Bluetooth audio interface',
         'Audio Mixer' => 'Audio Mixer',
         'Video Switcher' => 'Video Switcher',
