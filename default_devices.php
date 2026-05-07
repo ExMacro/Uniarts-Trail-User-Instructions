@@ -129,6 +129,21 @@ $devices = [
             ]
         ]
     ],
+    "MultiSync E658" => [
+        "manufacturer" => "NEC",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
     "PN-M552" => [
         "manufacturer" => "Sharp",
         "type" => "Display",
