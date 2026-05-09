@@ -62,7 +62,7 @@ if($showQrCode) {
         $qrImageSrc = $qrcode->render($fullUrl);
     } catch (Exception $e) {
         // Display error message if QR code generation fails
-        echo "Error creating QR code: " . $e->getMessage();
+        echo "Error creating QR code: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
     }
 }
 
