@@ -23,6 +23,9 @@ if (!in_array($lang, $supportedLanguages)) {
 
 // Get room code from URL parameter or set empty if not provided
 $roomCode = isset($_GET['room_code']) ? trim($_GET['room_code']) : '';
+if ($roomCode && !preg_match('/^[A-Za-z0-9\s\-_åäöÅÄÖ]+$/u', $roomCode)) {
+    $roomCode = '';
+}
 
 // Define the base URL that will be used for the QR code
 $baseUrl = 'https://sibaav.uniarts.fi/user_instructions.php?lang=' . $lang . '&room=';
