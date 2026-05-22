@@ -77,9 +77,6 @@ $texts = [
         ],
         'title_template' => 'Käyttöohje huoneelle %s',
         'default_title' => 'Huoneen QR-koodigeneraattori',
-        'help_text' => 'Tarvitsetko lisää apua?',
-        'contact_text' => 'Ota yhteyttä AV-tukeen: ',
-        'subject_text' => 'Kysymys tilasta '
     ],
     'sv' => [
         'instructions' => 'Öppna bruksanvisningen genom att skanna QR-koden med din telefons kameraapp.',
@@ -90,9 +87,6 @@ $texts = [
         ],
         'title_template' => 'Bruksanvisning för rum %s',
         'default_title' => 'QR-kodgenerator för rum',
-        'help_text' => 'Behöver du mer hjälp?',
-        'contact_text' => 'Kontakta AV-supporten: ',
-        'subject_text' => 'En fråga om rum '
     ],
     'en' => [
         'instructions' => 'Open the user manual by scanning the QR code with your phone\'s camera app.',
@@ -103,9 +97,6 @@ $texts = [
         ],
         'title_template' => 'User Manual for Room %s',
         'default_title' => 'Room QR Code Generator',
-        'help_text' => 'Do you need more help?',
-        'contact_text' => 'Please contact AV support: ',
-        'subject_text' => 'A question about room '
     ]
 ];
 
@@ -131,7 +122,7 @@ function e($string) {
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <head>
-    <title><?php echo $showQrCode ? 'Room ' . e($roomCode) . ' Instructions' : 'Room QR Code Generator'; ?></title>
+    <title><?php echo $showQrCode ? sprintf(e($currentTexts['title_template']), e($roomCode)) : e($currentTexts['default_title']); ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
@@ -139,7 +130,14 @@ function e($string) {
 <body>
 
 <!-- Language selector in gray bar at top -->
-<div class="lang-bar">
+<?php
+$langBarLabels = [
+    'fi' => 'Kielivalinta',
+    'sv' => 'Språkval',
+    'en' => 'Language selection'
+];
+?>
+<nav class="lang-bar" aria-label="<?php echo e($langBarLabels[$lang]); ?>">
     <div class="lang-bar-content">
         <?php
         foreach ($supportedLanguages as $language) {
@@ -153,14 +151,14 @@ function e($string) {
             // Build URL from parameters
             $queryString = http_build_query($params);
             
-            echo "<a href='?" . $queryString . "' $class>" . $languageNames[$language] . "</a> ";
+            echo "<a href='?" . $queryString . "' lang='" . e($language) . "' $class>" . $languageNames[$language] . "</a> ";
         }
         ?>
     </div>
-</div>
+</nav>
 
 <!-- Header with logo and title -->
-<div class="header">
+<header class="header">
     <img src="<?php echo $logoFile; ?>" alt="UniArts Logo">
     <?php
     if (!empty($roomCode)) {
@@ -171,7 +169,7 @@ function e($string) {
         echo '<span class="header-title" tabindex="0">' . $currentTexts['default_title'] . '</span>';
     }
     ?>
-</div>
+</header>
 
 <?php if(!$showQrCode): ?>
 <!-- Show form only if user has not given room code -->
