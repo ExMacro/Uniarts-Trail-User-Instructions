@@ -53,14 +53,21 @@ function e($string) {
 ?>
 <html lang="<?php echo e($lang); ?>">
     <head>
-        <title>Käyttöohje AV-laitteille</title>
+        <title><?php echo e($translations[$lang]['header_title']); ?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
     </head>
 <body>
 <!-- Language selector in gray bar at top -->
-<div class="lang-bar">
+<?php
+$langBarLabels = [
+    'fi' => 'Kielivalinta',
+    'sv' => 'Språkval',
+    'en' => 'Language selection'
+];
+?>
+<nav class="lang-bar" aria-label="<?php echo e($langBarLabels[$lang]); ?>">
     <div class="lang-bar-content">
         <?php
         $languageNames = [
@@ -79,14 +86,14 @@ function e($string) {
             }
             $queryString = http_build_query($params);
             
-            echo "<a href='?" . $queryString . "' $class>" . $languageNames[$language] . "</a> ";
+            echo "<a href='?" . $queryString . "' lang='" . e($language) . "' $class>" . $languageNames[$language] . "</a> ";
         }
         ?>
     </div>
-</div>
+</nav>
 
 <!-- Header with logo and title -->
-<div class="header">
+<header class="header">
     <?php
     // Logo files for different languages
     $logoFiles = [
@@ -108,7 +115,7 @@ function e($string) {
     ?>
     <img src="<?php echo e($logoFile); ?>" alt="<?php echo e($altText); ?>" tabindex="0">
     <span class="header-title" tabindex="0"><?php echo e($translations[$lang]['header_title']); ?></span>
-</div>
+</header>
 
 <?php
 // Include configuration file with API credentials and settings
@@ -332,7 +339,7 @@ foreach ($deviceGroups as $groupDevices) {
 }
 
 // Add room name as H1 element
-echo "<div class='container'>";
+echo "<main class='container'>";
 
 $roomName = '';
 
@@ -422,10 +429,10 @@ foreach ($deviceGroups as $type => $groupDevices) {
         }
     }
 }
-echo "</div>";
+echo "</main>";
 
 // Always show the footer with contact information
-echo '<div class="footer">';
+echo '<footer class="footer">';
 echo '<div class="footer-heading" tabindex="0">' . e($translations[$lang]['help_text']) . '</div>';
 echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['contact_text']);
 
@@ -434,7 +441,7 @@ $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 
 echo '<a href="' . e($mailto) . '">siba.avhelp@uniarts.fi</a>';
 echo '</div>';
-echo '</div>';
+echo '</footer>';
 ?>
 </body>
 </html>
