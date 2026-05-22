@@ -212,20 +212,5 @@ function e($string) {
     </div>
 </div>
 <?php endif; ?>
-<?php
-// Generate the footer HTML
-echo '<div class="footer">';
-echo '<div class="footer-heading">' . $currentTexts['help_text'] . '</div>';
-echo '<div class="footer-contact">' . $currentTexts['contact_text'];
-
-// Get room name if available
-$roomName = isset($array['data'][0]['location']['location']['name']) ? $array['data'][0]['location']['location']['name'] : '';
-$subject = rawurlencode($currentTexts['subject_text'] . $roomName);
-$mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
-
-echo '<a href="' . $mailto . '">siba.avhelp@uniarts.fi</a>';
-echo '</div>';
-echo '</div>';
-?>
 </body>
 </html>
