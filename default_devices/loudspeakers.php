@@ -60,6 +60,21 @@ return [
             ]
         ]
     ],
+    "8030A" => [
+        "manufacturer" => "Genelec",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Speakers are automatically activated when audio is played"
+            ],
+            "fi" => [
+                "Kaiuttimet aktivoituvat automaattisesti, kun ääntä toistetaan"
+            ],
+            "sv" => [
+                "Högtalarna aktiveras automatiskt när ljud spelas"
+            ]
+        ]
+    ],
     "Mercury V1" => [
         "manufacturer" => "Tannoy",
         "type" => "Loudspeakers",

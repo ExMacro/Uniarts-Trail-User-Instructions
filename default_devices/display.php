@@ -60,6 +60,21 @@ return [
             ]
         ]
     ],
+    "65SM8500" => [
+        "manufacturer" => "LG",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the remote controller to control the display"
+            ],
+            "fi" => [
+                "Käytä kaukosäädintä näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd fjärrkontrollen för att styra skärmen"
+            ]
+        ]
+    ],
     "MultiSync E558" => [
         "manufacturer" => "NEC",
         "type" => "Display",
