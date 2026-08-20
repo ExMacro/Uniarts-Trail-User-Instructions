@@ -47,7 +47,7 @@ $translations = [
 ];
 
 // Function to safely escape output to prevent XSS attacks
-function e($string) {
+function e(string $string): string {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 ?>
@@ -133,7 +133,7 @@ if(empty($code)) {
 }
 
 // Function to make API requests with automatic pagination
-function makeApiRequest($url, $code) {
+function makeApiRequest(string $url, string $code): array {
     $allData = [];
     $page = 1;
     $maxPages = 100; // Safety limit
@@ -173,7 +173,7 @@ function makeApiRequest($url, $code) {
 }
 
 // Function to get device image URL from items API data
-function getDeviceImageUrl($array, $modelName) {
+function getDeviceImageUrl(array $array, string $modelName): ?string {
     // Apply naming convention: lowercase, spaces to underscores
     $expectedBasename = strtolower(str_replace(' ', '_', $modelName));
     
@@ -236,7 +236,7 @@ if (!empty($locationId)) {
 }
 
 // Function to check if a specific model exists in the API response and count its quantity
-function checkModelExists($array, $model) {
+function checkModelExists(array $array, string $model): int {
     $quantity = 0;
     foreach ($array['data'] as $item) {
         if (isset($item['model']['name']) && $item['model']['name'] === $model) {
@@ -248,7 +248,7 @@ function checkModelExists($array, $model) {
 }
 
 // Function to determine device group based on type
-function getDeviceGroup($type) {
+function getDeviceGroup(string $type): string {
     $displayDevices = ["Projector", "Display"];
     $controlSystems = ["Control Panel"];
     $loudspeakers = ["Loudspeakers"];
@@ -278,7 +278,7 @@ $data = include('./default_devices.php');
 $devices = $data['devices'];
 $deviceTypeTranslations = $data['translations'];
 
-function translateDeviceType($type, $lang) {
+function translateDeviceType(string $type, string $lang): string {
     global $deviceTypeTranslations;
 
     if (isset($deviceTypeTranslations[$lang][$type])) {
@@ -291,7 +291,7 @@ function translateDeviceType($type, $lang) {
 }
 
 // Function to display instruction list
-function displayInstructionList($instructions) {
+function displayInstructionList(array $instructions): void {
     echo "<div class='instructions'>";
     echo "<ol>";
     foreach ($instructions as $instruction) {

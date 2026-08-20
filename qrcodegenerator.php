@@ -114,7 +114,7 @@ $logoFiles = [
 $logoFile = isset($logoFiles[$lang]) ? $logoFiles[$lang] : 'uniartslogo_en.png';
 
 // Function to safely escape output to prevent XSS attacks
-function e($string) {
+function e(string $string): string {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 
