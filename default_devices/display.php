@@ -135,4 +135,19 @@ return [
             ]
         ]
     ],
+    "KDL-32EX500" => [
+        "manufacturer" => "Sony",
+        "type" => "Display",
+        "instructions" => [
+            "en" => [
+                "Use the control panel to control the display"
+            ],
+            "fi" => [
+                "Käytä ohjauspaneelia näytön ohjaamiseen"
+            ],
+            "sv" => [
+                "Använd kontrollpanelen för att styra skärmen"
+            ]
+        ]
+    ],
 ];

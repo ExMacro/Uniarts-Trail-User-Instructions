@@ -278,6 +278,28 @@ $data = include('./default_devices.php');
 $devices = $data['devices'];
 $deviceTypeTranslations = $data['translations'];
 
+// Load room-specific overrides and merge them over default devices
+$overrides = include('./room_overrides.php');
+$roomCode = urldecode($room);
+
+if (isset($overrides[$roomCode])) {
+    foreach ($overrides[$roomCode] as $model => $override) {
+        if (!isset($devices[$model])) {
+            // New model for this room: override must contain the full config
+            $devices[$model] = $override;
+            continue;
+        }
+
+        $merged = array_merge($devices[$model], $override);
+        // Merge instructions per language so untranslated languages keep defaults
+        $merged['instructions'] = array_merge(
+            $devices[$model]['instructions'] ?? [],
+            $override['instructions'] ?? []
+        );
+        $devices[$model] = $merged;
+    }
+}
+
 function translateDeviceType(string $type, string $lang): string {
     global $deviceTypeTranslations;
 

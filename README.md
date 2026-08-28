@@ -12,6 +12,8 @@ This repository contains a system for generating AV equipment instructions for r
 | `qrcodegenerator.php` | Creates QR codes linked to room-specific instructions |
 | `user_instructions.php` | Displays AV equipment instructions for a specific room |
 | `default_devices.php` | Contains device information and multilingual instructions |
+| `room_overrides.php` | Loads room-specific device overrides from `room_overrides/` |
+| `room_overrides/` | Per-room override files that add or modify devices for a specific room |
 | `config.php` | Trail API configuration and credentials *(not included, see `config.example.php`)* |
 | `styles.css` | Styling for both the QR generator and instructions pages |
 
@@ -22,6 +24,7 @@ This repository contains a system for generating AV equipment instructions for r
 - **QR Code Generation**: Creates QR codes that link to room-specific instructions
 - **Responsive Design**: Works on both desktop and mobile devices
 - **Device Categorization**: Organizes devices by type (projectors, displays, etc.)
+- **Room-specific Overrides**: Override or add device instructions for individual rooms without changing the shared device database
 - **API Integration**: Pulls room and equipment data from the Trail API
 
 ## Usage
@@ -74,6 +77,12 @@ Images must be uploaded to Trail and attached to the correct device item. The fi
 
 > If no matching image is found, the instructions page displays a localised "No device image" message.
 > 
+## Room-specific Overrides
+
+Individual rooms sometimes deviate from the default device setup. Add a PHP file named after the room code (e.g. `X123.php`) inside `room_overrides/` to add or modify devices just for that room. The loader merges these overrides over the defaults from `default_devices.php`.
+
+For existing devices, instructions are merged per language so untranslated languages keep their defaults. For new models, the override must contain the full configuration (at minimum `instructions`).
+
 ## Author
 
 Marko Myöhänen, University of the Arts Helsinki
