@@ -29,17 +29,17 @@ return [
         "type" => "Conference Camera",
         "instructions" => [
             "en" => [
-                "Connect the USB-C cable from the Logitech Group to your computer",
+                "Connect the USB-A cable from the Logitech Group to your computer",
                 "Select 'Logitech' as your camera, microphone, and speaker in your video conferencing application",
                 "Use arrow buttons in Logitech group to zoom in / out and pan the camera",
             ],
             "fi" => [
-                "Yhdistä USB-C-kaapeli Logitech Groupista tietokoneeseesi",
+                "Yhdistä USB-A-kaapeli Logitech Groupista tietokoneeseesi",
                 "Valitse videoneuvottelusovelluksessasi 'Logitech' kameraksi, mikrofoniksi ja kaiuttimeksi",
                 "Käytä Logitech Groupin nuolipainikkeita kameran zoomaamiseen ja panorointiin",
             ],
             "sv" => [
-                "Anslut USB-C-kabeln från Logitech Group till din dator",
+                "Anslut USB-A-kabeln från Logitech Group till din dator",
                 "Välj 'Logitech' som kamera, mikrofon och högtalare i ditt videokonferensprogram",
                 "Använd piltangenterna på Logitech Group för att zooma in / ut och panorera kameran",
             ]
