@@ -26,21 +26,30 @@ $translations = [
     'fi' => [
         'header_title' => 'Käyttöohje AV-laitteille',
         'help_text' => 'Tarvitsetko lisää apua?',
-        'contact_text' => 'Ota yhteyttä AV-tukeen: ',
+        'contact_text' => 'Sähköposti: ',
+        'help_portal_text' => 'Portaali: ',
+        'phone_text' => 'Puhelin: ',
+        'phone_hours' => '(ark. 9.00 - 16.00)',
         'subject_text' => 'Kysymys tilasta ',
         'no_image' => 'Ei kuvaa'
     ],
     'sv' => [
         'header_title' => 'Bruksanvisning för AV-utrustning',
         'help_text' => 'Behöver du mer hjälp?',
-        'contact_text' => 'Kontakta AV-supporten: ',
+        'contact_text' => 'E-post: ',
+        'help_portal_text' => 'Portal: ',
+        'phone_text' => 'Telefon: ',
+        'phone_hours' => '(vardagar 9.00 - 16.00)',
         'subject_text' => 'En fråga om rum ',
         'no_image' => 'Ingen bild'
     ],
     'en' => [
         'header_title' => 'User Manual for AV Equipment',
         'help_text' => 'Do you need more help?',
-        'contact_text' => 'Please contact AV support: ',
+        'contact_text' => 'Email: ',
+        'help_portal_text' => 'Portal: ',
+        'phone_text' => 'Phone: ',
+        'phone_hours' => '(weekdays 9.00 - 16.00)',
         'subject_text' => 'A question about room ',
         'no_image' => 'No device image'
     ]
@@ -456,12 +465,19 @@ echo "</main>";
 // Always show the footer with contact information
 echo '<footer class="footer">';
 echo '<div class="footer-heading" tabindex="0">' . e($translations[$lang]['help_text']) . '</div>';
+echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['help_portal_text']);
+echo '<a href="https://help.uniarts.fi/ssc/app#/reportProblem/" target="_blank" rel="noopener noreferrer">https://help.uniarts.fi</a>';
+echo '</div>';
 echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['contact_text']);
 
 $subject = rawurlencode($translations[$lang]['subject_text'] . $roomName);
 $mailto = 'mailto:siba.avhelp@uniarts.fi?subject=' . $subject;
 
 echo '<a href="' . e($mailto) . '">siba.avhelp@uniarts.fi</a>';
+echo '</div>';
+echo '<div class="footer-contact" tabindex="0">' . e($translations[$lang]['phone_text']);
+echo '<a href="tel:+358294474000">+358 29 447 4000</a> ';
+echo e($translations[$lang]['phone_hours']);
 echo '</div>';
 echo '</footer>';
 ?>
