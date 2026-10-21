@@ -193,7 +193,7 @@ function getDeviceImageUrl(array $array, string $modelName): ?string {
                 foreach ($item['images'] as $image) {
                     $imageUrl = $image['url'] ?? null;
                     if ($imageUrl) {
-                        $filename = basename(parse_url($imageUrl, PHP_URL_PATH));
+                        $filename = basename(parse_url($imageUrl, PHP_URL_PATH) ?? '');
                         // Remove query string parameters if present
                         $filename = strtok($filename, '?');
                         // Get filename without extension
