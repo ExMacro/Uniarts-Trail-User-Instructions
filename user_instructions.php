@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 // Send security header before any HTML output
 header('X-Content-Type-Options: nosniff');
@@ -60,6 +59,7 @@ function e(string $string): string {
     return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 ?>
+<!DOCTYPE html>
 <html lang="<?php echo e($lang); ?>">
     <head>
         <title><?php echo e($translations[$lang]['header_title']); ?></title>
