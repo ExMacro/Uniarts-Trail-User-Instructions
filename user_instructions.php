@@ -259,7 +259,7 @@ function checkModelExists(array $array, string $model): int {
 // Function to determine device group based on type
 function getDeviceGroup(string $type): string {
     $displayDevices = ["Projector", "Display"];
-    $controlSystems = ["Control Panel"];
+    $controlSystems = ["Control Panel", "Loudspeaker Control Panel"];
     $loudspeakers = ["Loudspeakers"];
     $bluetoothDevices = ["Bluetooth audio interface"];
     $mixingDevices = ["Audio Mixer"];
