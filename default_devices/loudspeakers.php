@@ -75,6 +75,21 @@ return [
             ]
         ]
     ],
+    "8050A" => [
+        "manufacturer" => "Genelec",
+        "type" => "Loudspeakers",
+        "instructions" => [
+            "en" => [
+                "Switch on the speakers using the switch next to the door"
+            ],
+            "fi" => [
+                "Kytke kaiuttimet päälle oven pielessä olevasta kytkimestä"
+            ],
+            "sv" => [
+                "Slå på högtalarna med strömbrytaren vid dörren"
+            ]
+        ]
+    ],
     "Mercury V1" => [
         "manufacturer" => "Tannoy",
         "type" => "Loudspeakers",
