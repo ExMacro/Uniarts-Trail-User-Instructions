@@ -10,7 +10,7 @@ return [
                 "Select video input by pressing one of the SOURCE buttons (HDMI, USB-C, etc.)"
             ],
             "fi" => [
-                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF-painiketta",
                 "Säädä äänenvoimakkuutta VOLUME-säätimellä",
                 "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)"
             ],
@@ -38,7 +38,7 @@ return [
             "sv" => [
                 "Slå på/av AV-systemet genom att trycka på ON/OFF-knappen",
                 "Justera volymen med VOLUME-knapparna",
-                "Välj video und ljusdkälla genom att trycka på en av SOURCE-knapparna (PC, HDMI, osv.)"
+                "Välj video- och ljudkälla genom att trycka på en av SOURCE-knapparna (PC, HDMI, osv.)"
             ]
         ]
     ],
@@ -54,14 +54,14 @@ return [
                 "If no image appears, check that the correct input source is selected",
             ],
             "fi" => [
-                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneesi",
-                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
+                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneeseesi",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF-painiketta",
                 "Säädä äänenvoimakkuutta VOLUME-säätimellä",
                 "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)",
                 "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna",
             ],
             "sv" => [
-                "Anslut HDMI- eller USB-C-videokälla till din bärbara dator",
+                "Anslut HDMI- eller USB-C-kabeln till din bärbara dator",
                 "Slå på/av skärmen genom att trycka på ON/OFF-knappen",
                 "Justera volymen med VOLUME-enkoder",
                 "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)",
@@ -81,14 +81,14 @@ return [
                 "If no image appears, check that the correct input source is selected",
             ],
             "fi" => [
-                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneesi",
-                "Käynnistä/sammuta näyttö painamalla ON/OFF -painiketta",
+                "Kytke HDMI- tai USB-C-johto kannettavaan tietokoneeseesi",
+                "Käynnistä/sammuta näyttö painamalla ON/OFF-painiketta",
                 "Säädä äänenvoimakkuutta VOLUME-säätimellä",
                 "Valitse videolähde painamalla jotain SOURCE-painikkeista (HDMI, USB-C, jne.)",
                 "Jos kuvaa ei näy, tarkista että oikea tulolähde on valittuna",
             ],
             "sv" => [
-                "Anslut HDMI- eller USB-C-videokälla till din bärbara dator",
+                "Anslut HDMI- eller USB-C-kabeln till din bärbara dator",
                 "Slå på/av skärmen genom att trycka på ON/OFF-knappen",
                 "Justera volymen med VOLUME-enkoder",
                 "Välj videokälla genom att trycka på en av SOURCE-knapparna (HDMI, USB-C, osv.)",
