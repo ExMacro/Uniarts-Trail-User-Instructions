@@ -1,33 +1,21 @@
 <?php
 return [
     "S2117" => [
-        "SW4 HD 4K PLUS" => [
-            "manufacturer" => "Extron",
-            "type" => "Video Switcher",
+        "PN-M752" => [
+            "manufacturer" => "Sharp",
+            "type" => "Display",
             "instructions" => [
                 "en" => [
-                    "Select the video source using the INPUT buttons"
+                    "First, power on the AV rack using the main power switch on the rack front panel",
+                    "Then switch on the display using the display's power switch"
                 ],
                 "fi" => [
-                    "Valitse kuvalähde INPUT-painikkeista"
+                    "Kytke ensin AV-räkki päälle räkin etupaneelin pääkytkimestä",
+                    "Kytke sitten näyttö päälle näytön virtakytkimestä"
                 ],
                 "sv" => [
-                    "Välj bildkälla med INPUT-knapparna"
-                ]
-            ]
-        ],
-        "BDP-103EU" => [
-            "manufacturer" => "Oppo",
-            "type" => "Multi-format player",
-            "instructions" => [
-                "en" => [
-                    "Select Multi-format player as audio source in the control panel"
-                ],
-                "fi" => [
-                    "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista"
-                ],
-                "sv" => [
-                    "Välj multiformatspelare som ljudkälla på kontrollpanelen"
+                    "Slå först på AV-racket med huvudströmbrytaren på rackets frontpanel",
+                    "Slå sedan på skärmen med skärmens strömbrytare"
                 ]
             ]
         ],
@@ -36,16 +24,22 @@ return [
             "type" => "Loudspeaker Control Panel",
             "instructions" => [
                 "en" => [
-                    "Select the source using the input selector buttons",
-                    "Adjust volume using the VOLUME control"
+                    "Select Stereo C for HDMI audio",
+                    "Select Stereo D for the minijack cable",
+                    "Adjust volume using the VOLUME control",
+                    "Select the correct audio output on your laptop"
                 ],
                 "fi" => [
-                    "Valitse lähde tulonvalintapainikkeilla",
-                    "Säädä äänenvoimakkuutta VOLUME-säätimellä"
+                    "Valitse Stereo C, kun käytät HDMI-ääntä",
+                    "Valitse Stereo D, kun käytät minijakkikaapelia",
+                    "Säädä äänenvoimakkuutta VOLUME-säätimellä",
+                    "Valitse kannettavasta oikea äänilähtö"
                 ],
                 "sv" => [
-                    "Välj källa med ingångsväljarknapparna",
-                    "Justera volymen med VOLUME-kontrollen"
+                    "Välj Stereo C för HDMI-ljud",
+                    "Välj Stereo D för minijackkabeln",
+                    "Justera volymen med VOLUME-kontrollen",
+                    "Välj rätt ljudutgång på din dator"
                 ]
             ]
         ]
