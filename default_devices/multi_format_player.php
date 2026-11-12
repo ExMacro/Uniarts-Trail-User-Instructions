@@ -5,7 +5,7 @@ return [
         "type" => "Multi-format player",
         "instructions" => [
             "en" => [
-                "Select Multi-format player as audio sourve in the control panel",
+                "Select Multi-format player as audio source in the control panel",
             ],
             "fi" => [
                 "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista",
@@ -20,7 +20,7 @@ return [
         "type" => "Multi-format player",
         "instructions" => [
             "en" => [
-                "Select Multi-format player as audio sourve in the control panel",
+                "Select Multi-format player as audio source in the control panel",
             ],
             "fi" => [
                 "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista",
