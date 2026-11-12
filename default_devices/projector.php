@@ -23,15 +23,15 @@ return [
         "type" => "Projector",
         "instructions" => [
             "en" => [
-                "Use the control panel to power on the projector",
+                "Use the switch in the rack to power on the projector",
                 "Wait a moment for the projector to fully initialize",
             ],
             "fi" => [
-                "Käytä ohjauspaneelia projektorin käynnistämiseen",
+                "Käytä AV-räkissä olevaa kytkintä projektorin käynnistämiseen",
                 "Odota hetki, kunnes projektori on täysin käynnistynyt",
             ],
             "sv" => [
-                "Använd kontrollpanelen för att starta projektorn",
+                "Använd strömbrytaren i AV-racket för att starta projektorn",
                 "Vänta tills projektorn har startat helt",
             ]
         ]
@@ -41,7 +41,7 @@ return [
         "type" => "Projector",
         "instructions" => [
             "en" => [
-                "Use the switch in rack to power on the projector",
+                "Use the switch in the rack to power on the projector",
                 "Wait a moment for the projector to fully initialize",
             ],
             "fi" => [
