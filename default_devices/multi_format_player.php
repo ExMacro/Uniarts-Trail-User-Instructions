@@ -20,13 +20,13 @@ return [
         "type" => "Multi-format player",
         "instructions" => [
             "en" => [
-                "Select Multi-format player as audio source in the control panel",
+                "Select the multi-format player as the video source using the video switcher's INPUT buttons",
             ],
             "fi" => [
-                "Valitse moniformaattisoitin äänilähteeksi ohjauspaneelista",
+                "Valitse moniformaattisoitin kuvalähteeksi videovaihtajan INPUT-painikkeista",
             ],
             "sv" => [
-                "Välj multiformatspelare som ljudkälla på kontrollpanelen",
+                "Välj multiformatspelaren som bildkälla med videoomkopplarens INPUT-knappar",
             ]
         ]
     ],
