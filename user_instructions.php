@@ -13,7 +13,7 @@ if (!in_array($lang, $supportedLanguages)) {
 
 // Process URL parameters and validate room code
 $room = $_GET['room'] ?? '';
-$room = trim($room);
+$room = is_string($room) ? trim($room) : '';
 
 // Validate room code format
 if ($room && !preg_match('/^[A-Za-z0-9\s\-_åäöÅÄÖ]+$/u', $room)) {
