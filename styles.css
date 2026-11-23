@@ -382,7 +382,8 @@
     }
     
     .device-images {
-      width: 100%;
+      /* No width: 100% here. The image area stretches to the full width of
+         the column, and its 10px padding stays inside it, so pictures are centred. */
       justify-content: center;
     }
   }
